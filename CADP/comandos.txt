@@ -1,0 +1,1 @@
+instantfpc archivo.pas
