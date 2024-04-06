@@ -1,6 +1,6 @@
 program cap1ejer9;
 const
-  nums = 5;
+  cut = 0;
 var
   op: char;
   i, sum, num: integer;
@@ -9,15 +9,27 @@ begin
   read(op);
   if((op = '+') or (op = '-')) then
     begin
-      sum:=0;
-      for i:= 1 to nums do
+      write('Ingrese un numero: ');
+      read(num);
+      sum:=num;
+      if (op = '+') then
         begin
-          writeln('Ingrese un numero');
-          read(num);
-          if (op = '+') then
-            sum:= sum + num
-          else
-            sum:= sum - num
+          while (num <> cut) do
+            begin
+            write('Ingrese un numero ');
+            read(num);
+            sum:= sum + num;
+            end;
+        end
+      else
+        begin
+          while (num <> cut) do
+            begin
+            write('Ingrese un numero ');
+            read(num);
+            sum:= sum - num;
+            end;
         end;
       write('El resultado es: ', sum);
+    end;
 end.
