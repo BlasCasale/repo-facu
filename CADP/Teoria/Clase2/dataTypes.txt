@@ -1,0 +1,1 @@
+los subrangos son siempre de variables ordinales (char, boolean y integer)
