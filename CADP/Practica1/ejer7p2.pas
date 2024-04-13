@@ -4,13 +4,12 @@ const
   maxInitial= 5000;
   minInitial= 0;
 var
-  name, firstPilot, secondPilot, lastPilot, secondLastPilot: string;
+  name, firstPilot, secondPilot, lastPilot, secondLastPilot: string[60];
   i, time, firstTime, secondTime, lastTime, secondLastTime: integer;
 begin
   firstTime:= maxInitial;
   secondTime:= maxInitial;
   secondLastTime:= minInitial;
-  lastTime:= minInitial;
   for i:= 1 to pilots do
     begin
       write('Ingrese el nombre del piloto: ');

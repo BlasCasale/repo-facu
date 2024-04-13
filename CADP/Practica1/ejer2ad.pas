@@ -41,7 +41,7 @@ begin
         end;
 
       if (typeAlum = 'I') then
-        ingreTot:= ingreTot + 1;
+        ingreTot:= ingreTot + 1
       else
         recurTot:= recurTot +1;
 
@@ -59,13 +59,13 @@ begin
           if (note > approved) then
             begin
               asis:= asis + 1;
-              if (note = max)
+              if (note = max) then
                 counterTen:= counterTen + 1;
             end
           else if (note = 0) then
             counterZero:= counterZero + 1;
           sum:= sum + note;
-          write('Nota: ', note);
+          write('Nota: ', note:0:2);
         end;
       
       if (counterZero > 0) then
@@ -113,10 +113,21 @@ begin
 
       if (asis = eval) then
         alumAproTod:= alumAproTod +1;
+
+      writeln('Ingrese otro legajo: ');
+      readln(id);
     end;
 
-    perI:= (ingreParTot * 100) / ingreTot;
-    perR:= (recurParTot * 100) / recurTot;
+    if (ingreTot > 0) then
+      perI:= (ingreParTot * 100) / ingreTot
+    else
+      perI:= 0;
+
+    if (recurTot > 0) then
+      perR:= (recurParTot * 100) / recurTot
+    else
+      perR:= 0;
+
 
     writeln('Ingresantes que rinden ', ingreTot);
     writeln('Porcentaje de ingresantes que rinden ', perI:0:2);
