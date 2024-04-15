@@ -1,0 +1,17 @@
+1) En el proceso uno que tiene declarada la variable b dentro del mismo proceso, esta imprimira el valor de 3. En el caso del programa principal la variable a que es de tipo global, imprimirá 1 y la variable b que también es de tipo global, imprimirá 2.
+
+2) En el programa 2 tiene 2 variables a y b que son de tipos globales. Dentro del proceso uno la variable b se le asgina el valor de 3 e imprimirá ese mismo valor. Luego dentro del programa principal a la variable a se le asgina el valor de 1 y a la variable b se le asgina el valor de 2, luego imprimirá los respectivos valores.
+
+3) El error de este programa es que dentro del programa principal se invoca la variable b que no esta definida como variable global ni de programa, esta variable esta unicamente definidad dentro del proceso uno.
+
+4) La diferencia entre ambos programas es que en el primer caso las variables declaradas son de tipo globales, en el segundo caso las variables son declaradas de manera local en el programa.
+
+5) El problema de este programa es que las funcionas deben almacenar su respuesta dentro de una variable, entonces el resultado que retorne la funcion no se almacena en ningun lugar de memoria.
+
+7)
+a) Para completar la function se debería invocar la function para retornar el valor esperado o deseado.
+b) Para poder invocar una sola vez la function lo que se podría hacer es almacenar lo que retorna dentro de una variable para poder utilizar esa variable en todos los lugares que la necesite.
+
+c) i) En este caso el programa dara error porque la function no retorna nada.
+ii) En este caso el programa imprimirá 8 como resultado de la operación.
+iii) imprimirá lo mismo que en el caso anterior pero con la diferencia que se imprimirá el valor de la variable en la que se almaceno el resultado.
