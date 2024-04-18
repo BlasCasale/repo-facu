@@ -29,15 +29,15 @@ begin
             begin
               if (time > firstTime) then
                 begin
-                  secondPilot:= name;
-                  secondTime:= time;
-                end
-              else
-                begin
                   secondTime:= firstTime;
                   secondPilot:= firstPilot;
                   firstPilot:= name;
                   firstTime:= time;
+                end
+              else
+                begin
+                  secondPilot:= name;
+                  secondTime:= time;
                 end;
             end;
           if (time > secondLastTime) then

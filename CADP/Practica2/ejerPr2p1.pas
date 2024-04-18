@@ -17,5 +17,5 @@ begin
     writeln('El maximo par es ', maxPar);
 end;
 begin
-  leerNumeros
+  leerNumeros;
 end.
