@@ -1,3 +1,3 @@
 los maximos en valores chicos y los minimos en grandes
 
-el >= o <= sirve para actualizar cantidades y guardar otros datos como nombres, sino podriia no entrar nunca en un if o demas
+el >= o <= sirve para actualizar cantidades y guardar otros datos como nombres, sino podria no entrar nunca en un if o demas
