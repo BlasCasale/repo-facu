@@ -419,7 +419,7 @@ const BCDdesCS = (number) => {
   let chain = number.toString();
 
   chain = chain.slice(1);
-  
+
   const numbers = {
     '0': '0000',
     '1': '0001',
@@ -436,11 +436,11 @@ const BCDdesCS = (number) => {
   let result = '';
 
   for (let i = 0; i < chain.length; i++) {
-    if (i == chain.length - 1) {
+    if (i < chain.length - 1) {
+      result += `1111${numbers[chain[i]]}`;
+    } else {
       if (number < 0) result += `1101${numbers[chain[i]]}`;
       else result += `1100${numbers[chain[i]]}`;
-    } else {
-      result += `1111${numbers[chain[i]]}`;
     };
   };
 

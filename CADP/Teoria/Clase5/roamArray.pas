@@ -37,8 +37,8 @@ begin
       if ((arr[i] mod multi) = 0) then
         findMulti:= i;
       i:= i + 1;
-    end;
-  write('No se encontro multi de ', multi);
+    end;    
+  findMulti:= -1;
 end;
 var
   arr: vector;
