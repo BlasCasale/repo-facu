@@ -1,7 +1,9 @@
 program nombrePrograma;
 var
-  e:integer;
+  ok: boolean;
+  resu: integer;
 begin
-  e:= 9 div 2;
-  write(e);
+  resu:= 20;
+  ok:= (resu >= 10) and (resu <= 30);
+  write(ok);
 end.
