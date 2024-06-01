@@ -24,8 +24,10 @@ begin
       if (current = l) then
         l:= l^.next
       else
-        prev^.next:= current^.next;
-      dispose(current);
+        begin
+          prev^.next:= current^.next;
+          dispose(current);
+        end;
     end;
 end;
 procedure deleteVariousNodes (var l: list; value: integer);
