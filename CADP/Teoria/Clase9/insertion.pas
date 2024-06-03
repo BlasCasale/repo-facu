@@ -13,7 +13,7 @@ type
   }
 procedure insertNode (var l: list; value: integer);
 var
-  prev, current, newNode: node;
+  prev, current, newNode: list;
 begin
   new(newNode);
   newNode^.element:= value;
