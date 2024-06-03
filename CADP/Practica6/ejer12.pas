@@ -36,16 +36,11 @@ begin
   new(newNode);
   newNode^.element:= mobile;
   newNode^.next:= nil;
-  if (l = nil) then
-    l:= newNode
-  else
+  current:= l;
+  while ((current <> nil) and (current^.element.version < newNode^.element.version)) do
     begin
-      current:= l;
-      while ((current <> nil) and (current^.element.version < newNode^.element.version)) do
-        begin
-          prev:= current;
-          current:= current^.next;
-        end;
+      prev:= current;
+      current:= current^.next;
     end;
 
   if (current = l) then
@@ -66,18 +61,11 @@ begin
   new(newNode);
   newNode^.element.version:= mobile.version;
   newNode^.element.counter:= 1;
-  newNode^.next:= nil;
-  if (l = nil) then
-    l:= newNode
-  else
+  current:= l;
+  while ((current <> nil) and (current^.element.version < mobile.version)) do
     begin
-      current:= l;
       prev:= current;
-      while ((current <> nil) and (current^.element.version < mobile.version)) do
-        begin
-          prev:= current;
-          current:= current^.next;
-        end;
+      current:= current^.next;
     end;
 
   if (current = l) then
