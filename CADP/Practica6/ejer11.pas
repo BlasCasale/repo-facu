@@ -26,19 +26,12 @@ var
 begin
   new(newNode);
   newNode^.element:= student;
-  newNode^.next:= nil;
-  if (l = nil) then
-    l:= newNode
-  else
-    begin
-      prev:= l;
-      current:= l;
-      while ((current <> nil) and (current^.element.average > newNode^.element.average)) do
-        begin
-          prev:= current;
-          current:= current^.next;
-        end;
-    end;
+  current:= l;
+    while ((current <> nil) and (current^.element.average > newNode^.element.average)) do
+      begin
+        prev:= current;
+        current:= current^.next;
+      end;
   
   if (current = l) then
     begin
