@@ -31,7 +31,6 @@ var
 begin
   new(newNode);
   newNode^.element:= user;
-  newNode^.next:= nil;
   current:= l;
   while ((current <> nil) and (current^.element.lastAccess < newNode^.element.lastAccess)) do
     begin
@@ -115,6 +114,7 @@ begin
   initializeCounter(counter);
   minOne:= -1;
   minTwo:= -1;
+  l:= nil;
   for i:= 0 to usersL do
     begin
       user:= users[i];
