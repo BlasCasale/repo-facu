@@ -69,7 +69,7 @@ begin
 end;
 
 {agregar nodo a la lista de prod con desc}
-procedure addNodeDesc (var l, last: listDesc; descProd: string[50]);
+procedure addNodeDesc (var l, last: listDesc; descProd: string);
 var
   newNode: listDesc;
 begin
@@ -94,7 +94,7 @@ var
   counter, aux: integer;
 begin
   counter:= 0;
-  while (id > 0) then
+  while (id > 0) do
     begin
       aux:= id mod 10;
       if ((aux mod 2) = 0) then
@@ -115,7 +115,7 @@ begin
       if (l^.element.actualStock < l^.element.minStock) then
         underMin:= underMin + 1;
       counter:= counter + 1;
-      l:= l.^.next;
+      l:= l^.next;
     end;
   getAverageStock:= (underMin * 100) / counter;
 end;
