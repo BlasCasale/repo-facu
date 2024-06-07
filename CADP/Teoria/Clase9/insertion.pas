@@ -17,15 +17,12 @@ var
 begin
   new(newNode);
   newNode^.element:= value;
-  newNode^.next:= nil;
+  current:= l;
 
   if (l = nil) then
     l:= newNode
   else
     begin
-      prev:= l;
-      current:= l;
-
       while ((current <> nil) and (current^.element < newNode^.element)) do
         begin
           prev:= current;

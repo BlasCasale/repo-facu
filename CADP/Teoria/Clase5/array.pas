@@ -74,6 +74,12 @@ begin
       // firstArray[i]:= value;
       read(firstArray[i]);
     end;
+
+  read(value);
+  j:= 4;
+  for i:= dimL downTo j do
+    firstArray[i + 1]:= firstArray[i];
+    if (j=i) then firstArray[i] := value;
   
   chargeInfo(secondArray);
   showInfo(secondArray);
