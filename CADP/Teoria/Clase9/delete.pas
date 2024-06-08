@@ -22,12 +22,10 @@ begin
   if (current <> nil) then
     begin
       if (current = l) then
-        l:= l^.next
+        l:= l^.next;
       else
-        begin
-          prev^.next:= current^.next;
-          dispose(current);
-        end;
+        prev^.next:= current^.next;
+      dispose(current);
     end;
 end;
 procedure deleteVariousNodes (var l: list; value: integer);
@@ -49,7 +47,7 @@ begin
           else
             prev^.next:= current^.next;
           dispose(current);
-          current:= prev;
+          current:= current^.next;
         end;
     end;
 end;

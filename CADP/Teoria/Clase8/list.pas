@@ -43,14 +43,8 @@ var
 begin
   new(newNode);
   newNode^.element:= num;
-  newNode^.next:= nil;
-  if (ll = nil) then
-    ll:= newNode
-  else
-    begin
-      newNode.next:= ll;
-      ll:= newNode;
-    end;
+  newNode^.next:= ll;
+  ll:= newNode;
 end;
 procedure addAtEnd (var ll: list; num: integer);
 var
