@@ -23,6 +23,7 @@ begin
     l:= newNode
   else
     begin
+      prev:= current;
       while ((current <> nil) and (current^.element < newNode^.element)) do
         begin
           prev:= current;
@@ -32,7 +33,7 @@ begin
   
   if (current = l) then
     begin
-      newNode^.next:= l;
+      newNode^.next:= current;
       l:= newNode;
     end
   else
