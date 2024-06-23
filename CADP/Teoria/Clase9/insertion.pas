@@ -29,19 +29,17 @@ begin
           prev:= current;
           current:= current^.next;
         end;
-    end;
-  
-  if (current = l) then
-    begin
-      newNode^.next:= current;
-      l:= newNode;
-    end
-  else
-    begin
-      prev^.next:= newNode;
-      newNode^.next:= current;
-    end;
-
+        if (current = l) then
+          begin
+            newNode^.next:= current;
+            l:= newNode;
+          end
+        else
+          begin
+            prev^.next:= newNode;
+            newNode^.next:= current;
+          end;
+        end;
   // if (current = l) then {otra version}
   //   begin
   //     newNode^.next:= l;
