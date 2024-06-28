@@ -17,32 +17,32 @@
 ; a los 16 mas significativos
 
 org 1000h
-  num1 dw 8000h, 0020h
-  num2 dw 8000h, 0041h
+  num1 dw 0020h, 8000h
+  num2 dw 0041h, 8000h
   result dw 0, 0
   good db 0
   bad db 0
   response db 0FFh
 
 org 2000h
-  mov bx,offset num1
-  add bx, 2 ; aumento dos direcciones para apuntar a la parte baja
+  mov bx, offset num1
   mov cx, [bx]
   mov bx, offset num2
-  add bx, 2 ; vuelvo a aumentar dos para apuntar de nuevo a la parte baja
   mov dx, [bx]
   mov al, 0 ; seteo un 0 en ax para poder almacenar un posible carry
   add cx, dx
   mov bx, offset result
-  add bx, 2
   mov [bx], cx
   mov ah, response ; seteo lo que guardar despues
   jc incrementAx
 continue: mov bx, offset num1
+  add bx, 2 ; aumento dos direcciones para apuntar a la parte alta
   mov cx, [bx]
   mov bx, offset num2
+  add bx, 2 ; aumento 2 direcciones para apuntar a la parte alta
   mov dx, [bx]
   add cl, al ; aca sumo el carry
+  add bx, 2 ; aumento dos direcciones para poder llegar a la parte alta
   add cx, dx
   mov result, cx
   jno true ; si la cuenta no tiene overflow es que el resultado esta bien
