@@ -158,6 +158,7 @@ begin
       actualizeVec(counter, player);
       getAverage(player.games, average);
       actualizeMax(maxOne, maxTwo, average, player.id);
+      l:= l^.next;
     end;
 end;
 
@@ -187,7 +188,9 @@ begin
   maxTwo.average:= -1;
 
   chargeList(l); // se dispone
-
+  initializeVec(counter);
   roamList(l, secondL, maxOne, maxTwo, counter);
   informQuantity(counter);
+
+  writeln('ID1: ', maxOne.id, ' id2: ', maxTwo.id);
 end.
