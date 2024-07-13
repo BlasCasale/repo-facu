@@ -1,0 +1,5 @@
+1) resolver corte de control mientras recorren lista (proceso) ejercicio 3 de la practica
+2) como utilizar vectores
+3) eliminar de una lista
+
+que modulos necesito y donde los voy a usar?
