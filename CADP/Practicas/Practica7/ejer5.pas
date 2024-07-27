@@ -21,7 +21,7 @@ type
     dni: integer;
   end;
 
-  vecCounter = array [trucksId] of real;
+  vecCounter = array [trucksId] of truckObj;
 
   list = ^node;
 
@@ -55,8 +55,7 @@ type
     Nota: Los códigos de viaje no se repiten
   }
 var
-  {Variables}
 
 begin
-  {Programa principal}
+  
 end.
