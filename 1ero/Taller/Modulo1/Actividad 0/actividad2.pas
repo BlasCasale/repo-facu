@@ -13,19 +13,15 @@ type
   end;
 procedure chargeVec (var v: vecT; min, max, cut: integer);
 var
-  value: integer;
+  value, aux: integer;
 begin
-  value:= random(max);
+  aux:= max - min;
+  value:= min + random(aux+1); {Se le suma un número más para elrango}
   while ((v.dimL < dimF) and (value <> cut)) do
     begin
-      while ((value < min) and (value <> cut)) do
-        value:= random(max);
-      if (value <> cut) then
-        begin
-          v.v[v.dimL]:= value;
-          v.dimL:= v.dimL + 1;
-        end;
-      value:= random(max);
+      v.v[v.dimL]:= value;
+      v.dimL:= v.dimL + 1;
+      value:= min + random(aux);
     end;
 end;
 procedure initializeVec (var v: vec);
