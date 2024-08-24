@@ -34,6 +34,7 @@ begin
     pow:= x * pow(x, n-1);
 end;
 
+// esta mal y no puedo solucionarlo
 procedure factorial (n, fac: integer);
 begin
   if (n > 1) then
