@@ -1,6 +1,7 @@
 program ejer2;
 const
   min = 100;
+  max = 200;
 type
   
   list = ^node;
@@ -10,7 +11,6 @@ type
     next: list;
   end;
 
-  max = 200;
   {
     Escribir un programa que:
     a. Implemente un módulo recursivo que genere y retorne una lista de números enteros
@@ -24,6 +24,31 @@ type
     e. Implemente un módulo recursivo que reciba la lista generada en a) y un valor y devuelva
     verdadero si dicho valor se encuentra en la lista o falso en caso contrario.
   }
+
+procedure printReverseRecursive (l: list);
+begin
+  if (l^.next <> nil) then
+    printReverseRecursive(l^.next);
+  writeln(l^.element);
+end;
+
+procedure findLowerValue (l: list; var min: integer);
+begin
+  if (l^.element <= min) then
+    min:= l^.element;
+
+  if (l^.next <> nil) then
+    findLowerValue(l^.next, min);
+end;
+
+procedure findValueRecursive (l: list; value: integer; var ok: boolean);
+begin
+  if (l^.element = value) then
+    ok:= true;
+
+  if ((not ok) and (l^.next <> nil)) then
+    findValueRecursive(l^.next, value, ok);
+end;
 
 procedure addNode (var first, last: list; num: integer);
 var
@@ -59,8 +84,18 @@ end;
 
 var
   first, last: list;
+  ok: boolean;
+  num: integer;
 begin
   first:= nil;
   last:= nil;
+  ok:= false;
+  num:= 1000;
   randomize;
+  createList(first, last);
+  printReverseRecursive(first);
+  findLowerValue(first, num);
+  writeln('Min: ', num); 
+  findValueRecursive(first, 102, ok);
+  writeln(ok);
 end.
