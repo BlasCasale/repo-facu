@@ -19,6 +19,11 @@ type
 		quantity: integer;
 	end;
 
+	sellShort = record
+		quantity: integer;
+		date: dateObj;
+	end;
+
 	tree = ^node;
 	
 	node = record
@@ -44,13 +49,20 @@ type
 
 	list = ^nodeList;
 
-	nodeList = record
-		element: sell;
+	infoList = record
+		prodId: integer;
 		next: list;
 	end;
 
+	nodeList = record
+		element: sellShort;
+		next: list;
+	end;
+
+	field = ^infoList; // con esto podria psarle la info a otro modulo de manera mas simple
+
 	thirdNode = record
-		element: list;
+		element: field;
 		sl: thirdTree;
 		sr: thirdTree;
 	end;
@@ -67,49 +79,6 @@ type
 	código de producto. Cada nodo del árbol debe contener el código de producto y la lista de
 	las ventas realizadas del producto.
 }
-
-procedure createTreeWithLists (t: tree; var tt: thirdTree);
-
-procedure addNode (s: sell; var l: list);
-var
-	newNode: list;
-begin
-	if (l = nil) then
-		begin
-			new(newNode);
-			newNode^.element:= t^.element;
-			newNode^.next:= nil;
-			l:= newNode;
-		end
-	else
-		addNode(s, l^.next);
-end;
-
-procedure createThirdTree (t: tree; var tt: thirdTree);
-begin
-	if ((tt <> nil) and (tt^.element^.element.prodId < t^.element.prodId) and (tt^.sl <> nil)) then
-		createThirdTree(t, tt^.sl)
-	else if ((tt <> nil) and (tt^.element^.element.prodId >= t^.element.prodId) and (tt^.sr <> nil)) then
-		createThirdTree(t, tt^.sr);
-
-	if ((tt <> nil) and (tt^.element^.element.prodId = t^.element.prodId)) then
-		addNode(t^.element, tt^.element)
-	else if (tt = nil) then
-		begin
-			new(tt);
-			addNode(t^.element, tt^.element);
-			tt^.sl:= nil;
-			tt^.sr:= nil;
-		end;
-end;
-
-begin
-	if ((t <> nil) and (t^.sl <> nil)) then
-		createTreeWithLists(t^.sl, tt);
-	createThirdTree(t, tt);
-	if ((t <> nil) and (t^.sr <> nil)) then
-		createTreeWithLists(t^.sr, tt);
-end;
 
 procedure createSell (var s: sell);
 var
@@ -163,50 +132,150 @@ procedure createTreeByQuantity (t: tree; var st: secondTree);
 
 procedure createSecondTree (t: tree; var st: secondTree);
 begin
-	if ((st <> nil) and (st^.element.prodId < t^.element.prodId) and (st^.sl <> nil)) then
-		createSecondTree(t, st^.sl)
-	else if ((st <> nil) and (st^.element.prodId >= t^.element.prodId) and (st^.sr <> nil)) then
-		createSecondTree(t, st^.sr);
-
-	if ((st <> nil) and (st^.element.prodId = t^.element.prodId)) then
-		st^.element.quantity:= st^.element.quantity + t^.element.quantity
-	else if (st = nil) then
+	if (st = nil) then
 		begin
 			new(st);
 			st^.element.prodId:= t^.element.prodId;
 			st^.element.quantity:= t^.element.quantity;
 			st^.sl:= nil;
 			st^.sr:= nil;
+		end
+	else
+		begin
+			if (t^.element.prodId < st^.element.prodId) then
+				createSecondTree(t, st^.sl)
+			else if (t^.element.prodId > st^.element.prodId) then
+				createSecondTree(t, st^.sr)
+			else
+				st^.element.quantity:= st^.element.quantity + t^.element.quantity			
+		end;
+
+end;
+
+begin
+	if (t <> nil) then
+		begin
+			createSecondTree(t, st);
+			if (t^.sl <> nil) then
+				createTreeByQuantity(t^.sl, st);
+			if (t^.sr <> nil) then
+				createTreeByQuantity(t^.sr, st);
+		end;
+end;
+
+procedure createTreeWithLists (t: tree; var tt: thirdTree);
+
+procedure addNode (s: sell; var l: list);
+var
+	newNode: list;
+begin
+	if (l = nil) then
+		begin
+			new(newNode);
+			newNode^.element.quantity:= s.quantity;
+			newNode^.element.date:= s.date;
+			newNode^.next:= nil;
+			l:= newNode;
+		end
+	else
+		addNode(s, l^.next);
+end;
+
+procedure createThirdTree (t: tree; var tt: thirdTree);
+begin
+	if (tt = nil) then
+		begin
+			new(tt);
+			tt^.element^.prodId:= t^.element.prodId;
+			tt^.element^.next:= nil;  // este nil es para incializar la lista
+			addNode(t^.element, tt^.element^.next);
+			tt^.sl:= nil;
+			tt^.sr:= nil;
+		end
+	else
+		begin
+			if (t^.element.prodId < tt^.element^.prodId) then
+				createThirdTree(t, tt^.sl)
+			else if (t^.element.prodId > tt^.element^.prodId) then
+				createThirdTree(t, tt^.sr)
+			else
+				addNode(t^.element, tt^.element^.next);
 		end;
 end;
 
 begin
-	if ((t <> nil) and (t^.sl <> nil)) then
-		createTreeByQuantity(t^.sl, st);
 	if (t <> nil) then
-		createSecondTree(t, st);
-	if ((t <> nil) and (t^.sr <> nil)) then
-		createTreeByQuantity(t^.sr, st);
+		begin
+			createThirdTree(t, tt);
+
+			if (t^.sl <> nil) then
+				createTreeWithLists(t^.sl, tt);
+
+			if (t^.sr <> nil) then
+				createTreeWithLists(t^.sr, tt);
+		end;
 end;
 
+// zona de prints 
 procedure printDate (d: dateObj);
 begin
 	writeln('dia: ', d.day);
 	writeln('mes: ', d.month);
 	writeln('anio: ', d.year);
 end;
-procedure printTree (t: tree);
+
+procedure printMainTree (t: tree);
 begin
-	if ((t <> nil) and (t^.sl <> nil)) then
-		printTree(t^.sl);
-	writeln;
-	writeln('id: ', t^.element.prodId, ' , cantidad: ', t^.element.quantity);
-	printDate(t^.element.date);
-	writeln;
-	if ((t <> nil) and (t^.sr <> nil)) then
-		printTree(t^.sr);
+	if (t <> nil) then
+		begin
+			if (t^.sl <> nil) then
+				printMainTree(t^.sl);
+			writeln;
+			writeln('id: ', t^.element.prodId, ' , cantidad: ', t^.element.quantity);
+			printDate(t^.element.date);
+			writeln;
+			if (t^.sr <> nil) then
+				printMainTree(t^.sr);
+		end;
 end;
 
+procedure printSecondTree (st: secondTree);
+begin
+	if (st <> nil) then
+		begin
+			if (st^.sl <> nil) then
+				printSecondTree(st^.sl);
+			writeln('id: ', st^.element.prodId, ', cantidad: ', st^.element.quantity);
+			if (st^.sr <> nil) then
+				printSecondTree(st^.sr);
+		end;
+end;
+
+procedure printThirdTree (tt: thirdTree);
+
+procedure printList (l: list);
+begin
+	if (l^.next <> nil) then
+		printList(l^.next);
+	writeln('cantidad: ', l^.element.quantity);
+	printDate(l^.element.date);
+end;
+
+begin
+	if (tt <> nil) then
+		begin
+			if (tt^.sl <> nil) then
+				printThirdTree(tt^.sl);
+			writeln;
+			writeln('id: ', tt^.element^.prodId);
+			printList(tt^.element^.next);
+			writeln;
+			if (tt^.sr <> nil) then
+				printThirdTree(tt^.sr);
+		end;
+end;
+
+// programa principal
 var
 	t: tree;
 	st: secondTree;
@@ -214,15 +283,33 @@ var
 BEGIN
 	randomize;
 	t:= nil;
-	// st:= nil;
-	// tt:= nil;
+	st:= nil;
+	tt:= nil;
 
 	solveCreation(t);
 
-	// createTreeByQuantity(t, st);
+	//createTreeByQuantity(t, st);
 
-	// createTreeWithLists(t, tt);
+	createTreeWithLists(t, tt);
 
-	printTree(t);
+	writeln('Impresion para el main');
+	writeln;
+	writeln;
+	printMainTree(t);
+	writeln;
+	writeln;
+	writeln('Impresion para el second');
+	writeln;
+	writeln;
+	//printSecondTree(st);
+	writeln;
+	writeln;
+	writeln('Impresion para el third');
+	writeln;
+	writeln;
+	printThirdTree(tt);
+	writeln;
+	writeln;
+	writeln('1ero: ', t^.element.prodId, ' ', t^.element.quantity);
 END.
 
