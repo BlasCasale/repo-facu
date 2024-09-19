@@ -1,0 +1,50 @@
+asignacion de variables
+int nombre;
+double nombre = 13.2;
+boolean nombre = true;
+
+String blas;
+blas = "Blas";
+blas = blas + ' Casale';
+blas += ', es estudiante de la facultad de Informática';
+
+tipos primitivos
+. char
+. boolean
+. int = [10, 12, 14]
+. double = [10.2, 134.2]
+
+declaracion de variables
+int miDni = 1232134, tuDni = 12324567;
+char sexo1, sexo2 = 'M'; => sexo1 no esta inicializada
+
+calculos aritmeticos
+
+int i = 4/3; => división entera i = 1
+double d1 = 4.0/3.0 => división real d1 = 1.33333
+double d2 = 4/3 => división entera d2 = 1.0
+double d3 = (double) 4/3 => división real d3 = 1.33333 => de esta manera se hace una aclaración de como quiere que se retorne
+
+Java tiene operadores aritmeticos (los clasicos)
+
+Operadores relacionales (con el mismo tipo de dato)
+
+== igual
+!= distinto
+> mayor
+>= mayor o igual
+< menor
+<= menor o igual
+
+Operadores unarios aritmeticos
+++
+--
+también se puede hacer ++i;
+
+Operadores condicionales
+&&
+||
+!
+
+Operador para concatenación de Strings
++
