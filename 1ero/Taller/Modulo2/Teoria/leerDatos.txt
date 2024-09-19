@@ -1,0 +1,4 @@
+para leer datos desde teclado vamos a usar el paquete
+
+import PaqueteLectura.Teclado;
+
