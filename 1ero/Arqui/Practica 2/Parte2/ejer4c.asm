@@ -51,9 +51,11 @@ jnz poll
 ret
 
 org 3030h
-risingEdge: mov al, 0
+risingEdge: in al, PA
+and al, 0fbh
 out PA, al
-mov al, 2
+in al, PA
+or al, 02h
 out PA, al
 ret
 
