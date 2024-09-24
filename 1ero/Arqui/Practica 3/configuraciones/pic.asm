@@ -13,7 +13,7 @@ INT0 equ 24h
 ID_F10 equ 22
 I_F10 equ 88
 
-org 88
+org I_F10
 dir_saludar dw saludar
 
 org 1000h
