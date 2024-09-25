@@ -1,0 +1,6 @@
+objeto: abstraccion de un objeto del mundo real, tiene características y tiene comportamiento
+
+una coleccion es una estructura de datos (se pueden trabajar como objetos)
+
+estado interno: son las características que distinguen al objeto, en poo estos atributos son las
+variables de instancia del objeto
