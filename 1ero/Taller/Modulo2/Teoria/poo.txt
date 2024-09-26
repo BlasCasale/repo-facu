@@ -4,3 +4,17 @@ una coleccion es una estructura de datos (se pueden trabajar como objetos)
 
 estado interno: son las características que distinguen al objeto, en poo estos atributos son las
 variables de instancia del objeto
+
+variables para el estado interno y tenemos metodos de instancia para representar todos los servicios
+que puede responder el objeto
+
+hay estados internos y metodos publicos y privados (encapsulamiento)
+
+para ver la info de un objeto es recomendable unicamente hacerlo desde una interfaz publico con los estados privados
+
+en poo son los objetos los que realizan el computo en la app
+
+para solicitarle algo a un obj se le envia un msj y este retorna un valor
+
+los sustantivos tienden a ser objetos => identificar sus características
+                                      => identificar sus acciones
