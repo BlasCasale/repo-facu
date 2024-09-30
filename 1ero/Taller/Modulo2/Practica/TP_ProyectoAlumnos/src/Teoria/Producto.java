@@ -25,12 +25,12 @@ public class Producto {
 
     }
 
-    public double getPrecioConIva() {
-        return this.precio * 1.21;
+    public double getiIvaDelPrecio() {
+        return this.precio * 0.21;
     }
 
     public double getPrecioFinal() {
-        return this.precio * this.getPrecioConIva();
+        return this.precio * this.getiIvaDelPrecio();
     }
 
     public double getPrecio() {
