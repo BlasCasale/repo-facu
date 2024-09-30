@@ -31,15 +31,48 @@ public class Ejer3 {
          */
         int days = 5;
         int inter = 8;
+        String cut = "ZZZ";
         Persona[][] interviews = new Persona[days][inter];
         String name;
         int age, dni;
+        int dimL = 0;
         int i = 0;
         int j = 0;
         System.out.println("Ingrese el nombre del entrevistado: ");
         name = Lector.leerString();
-        
-        System.out.println("");
-    }
 
+        while ((dimL < (days * inter)) && (!name.equals(cut))) {
+            System.out.println("Ingrese la edad del entrevistado: ");
+            age = Lector.leerInt();
+            System.out.println("Ingrese el DNI del entrevistado: ");
+            dni = Lector.leerInt();
+            interviews[i][j] = new Persona(name, dni, age);
+            j++;
+            dimL++;
+            if (j == inter) {
+                j = 0;
+                if (i < days) {
+                    i++;
+                }
+            }
+        }
+        
+        if (dimL != 0) {
+            i = 0;
+            j = 0;
+            int k = 0;
+
+            while (k <= dimL) {
+                System.out.println(interviews[i][j].toString());
+                j++;
+                k++;
+                if (j == inter) {
+                    j = 0;
+                    if (i < days) {
+                        i++;
+                    }
+                }
+            }
+        }
+    }
 }
