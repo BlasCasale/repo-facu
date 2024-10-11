@@ -4,6 +4,8 @@
  */
 package tema4;
 
+import PaqueteLectura.Lector;
+
 /**
  *
  * @author ASUS
@@ -34,14 +36,38 @@ F- Realizar un programa que instancie un jugador y un entrenador. Informe la
 representación String de cada uno.
 NOTA: para cada método a implementar piense en que clase/s debe definir el método.
  */
-
 public class Ejer2 {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        System.out.println("Ingrese el nombre del entrenador: ");
+        String nombre = Lector.leerString();
+        System.out.println("Ingrese el sueldo basico del entrenador: ");
+        double sueldo = Lector.leerDouble();
+        System.out.println("Ingrese la antiguedad del entrenador: ");
+        int antiguedad = Lector.leerInt();
+        System.out.println("Ingrese los años de antiguedad del entrenador: ");
+        int campeonatos = Lector.leerInt();
+
+        Entrenador entrenador = new Entrenador(nombre, sueldo, antiguedad, campeonatos);
+
+        System.out.println("Ingrese el nombre del jugador: ");
+        nombre = Lector.leerString();
+        System.out.println("Ingrese el sueldo basico del jugador: ");
+        sueldo = Lector.leerDouble();
+        System.out.println("Ingrese la antiguedad del jugador: ");
+        antiguedad = Lector.leerInt();
+        System.out.println("Ingrese los partidos jugados por el jugador: ");
+        int partidos = Lector.leerInt();
+        System.out.println("Ingrese los goles que hizo el jugador: ");
+        int goles = Lector.leerInt();
+
+        Jugador jugador = new Jugador(nombre, sueldo, antiguedad, goles, partidos);
+
+        System.out.println(entrenador.toString());
+        System.out.println(jugador.toString());
     }
 
 }
