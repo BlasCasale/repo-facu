@@ -1,0 +1,57 @@
+programa Cap5Ejer8
+procesos
+  proceso JuntarFlores
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso JuntarPapeles
+  comenzar
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+  proceso RecorrerAv
+  comenzar
+    JuntarFlores
+    repetir 99
+      mover
+      JuntarFlores
+    derecha
+  fin
+  proceso RecorrerCa
+  comenzar
+    JuntarPapeles
+    repetir 99
+      mover
+      JuntarPapeles
+    repetir 3
+      derecha
+  fin
+  proceso Final
+  variables
+    av:numero
+    ca:numero
+  comenzar
+    av:=1
+    ca:=1
+    repetir 99
+      RecorrerAv
+      av:=av+1
+      Pos(1,ca)
+      RecorrerCa
+      ca:=ca+1
+      Pos(av,1)
+  fin
+areas
+  ciudad: AreaC(1,1,100,100)
+robots
+  robot robot1
+  comenzar
+    Final
+  fin
+variables
+  R-info: robot1
+comenzar
+  AsignarArea(R-info,ciudad)
+  Iniciar(R-info,1,1)
+fin

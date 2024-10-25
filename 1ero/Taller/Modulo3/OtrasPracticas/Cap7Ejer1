@@ -1,0 +1,49 @@
+programa Cap7Ejer1
+procesos
+  proceso CantFlorPapel (ES flor: numero; ES papel: numero)
+  variables
+    auxF, auxP : numero
+  comenzar
+    auxF := 0
+    auxP := 0
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      flor := flor + 1
+      auxF := auxF + 1
+    repetir auxF
+      depositarFlor
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+      papel:= papel + 1
+      auxP:= auxP + 1
+    repetir auxP
+      depositarPapel
+  fin
+  proceso RecorrerCalle (E calle: numero)
+  variables
+    totalFlores, totalPapeles: numero
+  comenzar
+    Pos(1,calle)
+    derecha
+    totalFlores:= 0
+    totalPapeles:= 0
+    repetir 99
+      CantFlorPapel (totalFlores, totalPapeles)
+      mover
+    CantFlorPapel(totalFlores, totalPapeles)
+    Informar(totalFlores)
+    Informar(totalPapeles)
+  fin
+areas
+  ciudad: AreaC(1,1,100,100)
+robots
+  robot robot1
+  comenzar
+    RecorrerCalle(5)
+  fin
+variables
+  R-info: robot1
+comenzar
+  AsignarArea(R-info,ciudad)
+  Iniciar(R-info,1,1)
+fin    

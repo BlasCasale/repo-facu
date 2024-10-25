@@ -1,0 +1,45 @@
+programa Cap7Ejer2
+procesos
+  proceso JuntarFlor (ES flor: numero)
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      flor:=flor + 1
+  fin
+  proceso DejarFlor
+  comenzar
+    mientras (HayFlorEnLaBolsa)
+      depositarFlor
+  fin
+  proceso RecorrerAv (E av: numero)
+  variables
+    flores: numero
+    par: boolean
+  comenzar
+    flores:= 0
+    par:= F
+    Pos(av, 1)
+    repetir 99
+      si (par)
+        DejarFlor
+      sino
+        JuntarFlor(flores)
+      par:= ~par
+      mover
+    JuntarFlor(flores)
+    Informar(flores)
+  fin
+areas
+  ciudad: AreaC(1,1,100,100)
+robots
+  robot robot1
+  comenzar
+    RecorrerAv(5)
+  fin
+variables
+  R-info: robot1
+comenzar
+  AsignarArea(R-info,ciudad)
+  Iniciar(R-info,1,1)
+fin
+    

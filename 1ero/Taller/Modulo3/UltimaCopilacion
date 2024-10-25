@@ -1,0 +1,87 @@
+{ ASUS 2024-10-22T18:28:18.088 }
+programa ejer4
+procesos
+  proceso limpiarFlor
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+  fin
+  
+  proceso recorrerImpar
+  comenzar
+    repetir 99
+      limpiarFlor
+      mover
+    limpiarFlor
+  fin
+  
+  proceso limpiarAreaImpar
+  comenzar
+    repetir 24
+      recorrerImpar
+      Pos(PosAv + 1, 1)
+    recorrerImpar
+  fin
+  
+  proceso limpiarAreasImpar
+  comenzar
+    limpiarAreaImpar
+    Pos(51, 1)
+    limpiarAreaImpar
+  fin
+  
+  proceso limpiarPapel
+  comenzar
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+  fin
+  
+  proceso recorrerPar
+  comenzar
+    repetir 99
+      limpiarPapel
+      mover
+    limpiarPapel
+  fin
+  
+  proceso limpiarAreaPar
+  comenzar
+    repetir 24
+      recorrerPar
+      Pos(PosAv + 1,1)
+    recorrerPar
+  fin
+  
+  proceso limpiarAreasPar
+  comenzar
+    limpiarAreaPar
+    Pos(76, 1)
+    limpiarAreaPar
+  fin
+areas
+  area1: AreaP(1,1,25,100)
+  area2: AreaP(26,1,50,100)
+  area3: AreaP(51,1,75,100)
+  area4: AreaP(76,1,100,100)
+robots
+  robot robot1
+  comenzar
+    limpiarAreasPar
+  fin
+  
+  robot robot2
+  comenzar
+    limpiarAreasImpar
+  fin
+  
+variables
+  r1: robot1
+  r2: robot2
+comenzar
+  AsignarArea(r1, area2)
+  AsignarArea(r1, area4)
+  AsignarArea(r2, area1)
+  AsignarArea(r2, area3)
+  Iniciar(r1, 26,1)
+  Iniciar(r2, 1,1)
+fin

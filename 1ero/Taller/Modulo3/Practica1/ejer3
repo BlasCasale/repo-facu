@@ -1,0 +1,82 @@
+programa eje3
+procesos
+  proceso contarPapeles (ES papeles: numero)
+  comenzar
+    mientras HayPapelEnLaEsquina
+      papeles:= papeles + 1
+      tomarPapel
+    mientras HayPapelEnLaBolsa
+      depositarPapel
+  fin
+  proceso contarFlores (ES flores: numero)
+  comenzar
+    mientras HayFlorEnLaEsquina
+      flores:= flores + 1
+      tomarFlor
+    mientras HayFlorEnLaBolsa
+      depositarFlor
+  fin
+  proceso lado (E n: numero; ES flores: numero;ES papeles: numero)
+  comenzar
+    repetir n
+      contarFlores(flores)
+      contarPapeles(papeles)
+      mover  
+  fin
+  proceso escalon (E n: numero; ES esca: numero)
+  variables
+    flores: numero
+    papeles: numero
+  comenzar
+    flores:= 0
+    papeles:= 0
+    lado(n, flores, papeles)
+    derecha
+    lado(n, flores, papeles)
+    si ((papeles - flores) = 1)
+      esca:= esca + 1
+  fin
+  proceso completo
+  variables
+    n: numero
+    esca: numero
+  comenzar
+    n:= 1
+    esca:= 0
+    repetir 4
+      escalon(n, esca)
+      n:= n + 1
+      repetir 3
+        derecha
+    Informar(esca)
+  fin
+areas
+  cuadrado: AreaC(12, 6, 45, 40)
+robots
+  robot robot1
+  comenzar
+    completo
+  fin
+  
+  robot robot2
+  comenzar
+    completo
+  fin
+  
+  robot robot3
+  comenzar
+    completo
+  fin
+  
+variables
+  r1: robot1
+  r2: robot2
+  r3: robot3
+comenzar
+  AsignarArea(r1, cuadrado)
+  AsignarArea(r2, cuadrado)
+  AsignarArea(r3, cuadrado)
+  Iniciar(r1, 22, 6)
+  Iniciar(r2, 17, 10)
+  Iniciar(r3, 12, 14)
+fin

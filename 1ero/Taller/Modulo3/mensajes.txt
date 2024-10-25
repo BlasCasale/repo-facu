@@ -1,0 +1,54 @@
+pasaje de mensajes en CMRE el envio de msj asincrónico y la recepcion es sincrónica
+
+para comunicar los robots estan los mensajes o la memoria compartida
+
+para enviar mensajes
+
+robots
+  robot recolector
+    variables
+      ancho, alto, f, quienSoy: numoer
+    comenzar
+      RecibirMensaje(quienSoy, robot3) recibo quien es
+      RecibirMensaje(ancho, robot3) para recibir siempre es con 
+      variables, tambien se debe declarar la variable robot del que se recibe el msj
+      RecibirMensaje(alto, robot3)
+      rectangulo(alto, ancho, f)
+      EnviarMensaje(quienSoy, robot3)
+      EnviarMensaje(f, robot3)
+    fin
+  
+  ! es el jefe que dice de que altura se hara el triangulo, es el que mande el msj
+
+  robot tipo2
+    variables
+      x, f, total, quienEs: numero
+    comenzar
+      x:= 8
+      total:= 0
+
+      EnviarMensaje(1, robot1) envio el num de robot
+      EnviarMensaje(2, robot2)
+
+      EnviarMensaje(5, robot1) van las variables no el tipo
+      EnviarMensaje(x, robot2) solo un valor por msj
+
+      repetir 2
+        RecibirMensaje(f, quienEs) recibe de cualquiera
+        Informar(quienEs)
+        Informar(f)
+        total:= total + f
+      Informar(total)
+    fin
+
+variables
+  robot1: recolector
+  robot2: recolector
+  robot3: tipo2
+----------
+
+El envio del msj es asincrónico, dado que el robot lo envia y sigue ejecutando su cod
+
+La recepcion es síncrona, dado que el robot que espera un msj no procesa hasta no recibir el msj
+
+
