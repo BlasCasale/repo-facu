@@ -1,0 +1,58 @@
+programa eje2
+procesos
+  proceso hacerLado
+  variables
+    cant: numero
+  comenzar
+    cant:= 0
+    repetir 20
+      mientras HayPapelEnLaEsquina
+        tomarPapel
+        cant:= cant + 1
+      mover
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+    Informar(cant)
+  fin
+areas
+  cuadrado: AreaC(10,10,30,30)
+robots
+  robot robot1
+  comenzar
+    hacerLado
+  fin
+  
+  robot robot2
+  comenzar
+    derecha
+    hacerLado
+  fin
+  
+  robot robot3
+  comenzar
+    repetir 2
+      derecha
+    hacerLado
+  fin
+  
+  robot robot4
+  comenzar
+    repetir 3
+      derecha
+    hacerLado
+  fin
+variables
+  r1: robot1
+  r2: robot2
+  r3: robot3
+  r4: robot4
+comenzar
+  AsignarArea(r1, cuadrado)
+  AsignarArea(r2, cuadrado)
+  AsignarArea(r3, cuadrado)
+  AsignarArea(r4, cuadrado)
+  Iniciar(r1, 10, 10)
+  Iniciar(r2, 10, 30)
+  Iniciar(r3, 30, 30)
+  Iniciar(r4, 30, 10)
+fin

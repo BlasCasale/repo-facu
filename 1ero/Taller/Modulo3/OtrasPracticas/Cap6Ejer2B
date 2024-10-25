@@ -1,0 +1,29 @@
+programa Cap6Ejer2B
+procesos
+  proceso Cuadrado (E lado:numero)
+  comenzar
+    repetir 4
+      repetir lado
+        mover
+      derecha
+  fin
+areas
+  ciudad: AreaC(1,1,100,100)
+robots
+  robot robot1
+  variables
+    cuantas:numero
+  comenzar
+    cuantas:=1
+    repetir 5
+      Cuadrado(cuantas)
+      si (cuantas < 5)
+        Pos(PosAv+cuantas,1)
+        cuantas:=cuantas+1
+  fin
+variables
+  R-info: robot1
+comenzar
+  AsignarArea(R-info,ciudad)
+  Iniciar(R-info,1,1)
+fin
