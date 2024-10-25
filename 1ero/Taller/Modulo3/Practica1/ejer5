@@ -1,0 +1,92 @@
+programa ejer5
+procesos
+  proceso limpiarF
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+  fin
+  proceso depositarF
+  comenzar
+    mientras HayFlorEnLaBolsa
+      depositarFlor
+  fin
+  proceso limpiarP
+  comenzar
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+  fin
+  proceso depositarP
+  comenzar
+    mientras HayPapelEnLaBolsa
+      depositarPapel
+  fin
+  proceso limpiarEsquinasF (E esq: numero)
+  comenzar
+    repetir esq
+      limpiarF
+      mover
+    limpiarF
+    Pos(100, PosCa)
+    depositarF 
+  fin
+  proceso limpiarEsquinasP (E esq: numero)
+  variables
+    av, ca: numero
+  comenzar
+    av:= PosAv
+    ca:= PosCa
+    repetir esq
+      limpiarP
+      mover
+    limpiarP
+    Pos(av, ca)
+    depositarP
+  fin
+areas
+  a1: AreaPC(1, 75, 100, 100)
+  a2: AreaPC(1, 1, 100, 20)
+robots
+  robot r1
+  comenzar
+    derecha
+    limpiarEsquinasF(15)
+    Pos(1,80)
+    limpiarEsquinasF(15)
+  fin
+  
+  robot r2
+  comenzar
+    limpiarEsquinasP(20)
+    Pos(80,80)
+    limpiarEsquinasP(20)    
+  fin
+  
+  robot r3
+  comenzar
+    derecha
+    limpiarEsquinasF(30)
+    Pos(70, 10)
+    limpiarEsquinasF(30)    
+  fin
+  
+  robot r4
+  comenzar
+    limpiarEsquinasP(10)
+    Pos(15,1)
+    limpiarEsquinasP(10)    
+  fin
+variables
+  ro1: r1
+  ro2: r2
+  ro3: r3
+  ro4: r4
+comenzar
+  AsignarArea(ro1, a1)
+  AsignarArea(ro2, a1)
+  AsignarArea(ro3, a2)
+  AsignarArea(ro4, a2)
+  Iniciar(ro1, 1,75)
+  Iniciar(ro2, 75,80)
+  Iniciar(ro3, 70,15)
+  Iniciar(ro4, 10,1)
+fin
