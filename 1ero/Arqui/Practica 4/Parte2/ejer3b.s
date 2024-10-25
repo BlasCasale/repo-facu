@@ -13,19 +13,15 @@ ld $t1, data($0)
 daddi $t9, $0, 43 ; +
 daddi $t8, $0, 45 ; -
 daddi $t7, $0, 47 ; /
-daddi $t2, $0, 9 ; leo el char
-sd $t2, 0($t0)
-lbu $s0, 0($t1) ; guardo el char
-daddi $t2, $0, str
-sd $t2, 0($t1)
-daddi $t2, $0, 4
-sd $t2, 0($t0)
 daddi $t2, $0, 8 ; leo el num
 sd $t2, 0($t0) ; se envia la orden
 ld $s1, 0($t1) ; lei el num
 daddi $t2, $0, 8 ; leo el num
 sd $t2, 0($t0)
 ld $s2, 0($t1) ; lei el num
+daddi $t2, $0, 9 ; leo el char
+sd $t2, 0($t0)
+lbu $s0, 0($t1) ; guardo el char
 beq $s0, $t9, add
 beq $s0, $t8, sub
 beq $s0, $t7, div
