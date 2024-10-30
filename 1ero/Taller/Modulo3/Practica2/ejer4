@@ -1,0 +1,87 @@
+programa ejer4
+procesos
+  proceso juntarPapeles
+  comenzar
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+  fin
+  proceso juntarFlores
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+  fin
+  proceso limpiarEsquina (E av: numero; E ca: numero)
+  variables
+    miAv: numero
+    miCa: numero
+  comenzar
+    miAv:= PosAv
+    miCa:= PosCa
+    Pos(av,ca)
+    juntarPapeles
+    juntarFlores
+    Pos(miAv,miCa)
+  fin
+areas
+  aReco: AreaPC(25,25,75,75)
+  aR1: AreaP(25,1,25,1)
+  aR2: AreaP(30,1,30,1)
+  aR3: AreaP(35,1,35,1)
+  aR4: AreaP(40,1,40,1)
+  eJefe: AreaP(1,1,1,1)
+robots
+  robot r1
+  variables
+    trabajo: boolean
+    continua: boolean
+    id: numero
+    veces: numero
+    av: numero
+    ca: numero
+  comenzar
+    RecibirMensaje(id, jefe)
+    continua:= V
+    veces:= 0
+    mientras continua
+      RecibirMensaje(trabajo, jefe)
+      si trabajo
+        RecibirMensaje(av, jefe)
+        RecibirMensaje(ac, jefe)
+        limpiarEsquina(av, ca)
+        veces:= veces + 1
+        EnviarMensaje(V, jefe)
+      sino
+        continua:= F
+    EnviarMensaje(veces, jefe)
+    EnviarMensaje(id, jefe)
+  fin
+  
+  robot je
+  variables
+    ganador: numero
+    id: numero
+    max: numero
+    act: numero
+    av: numero
+    ca: numero
+    termina: boolean
+  comenzar
+    EnviarMensaje(1, ro1)
+    EnviarMensaje(2, ro2)
+    EnviarMensaje(3, ro3)
+    EnviarMensaje(4, ro4)
+    repetir 10
+      EnviarMensaje(V, *)
+      RecibirMensaje(termina, *)
+    EnviarMensaje(F, ro1)
+    EnviarMensaje(F, ro2)
+    EnviarMensaje(F, ro3)
+    EnviarMensaje(F, ro4)
+    RecibirMensaje(act,
+    
+    
+   
+  
+  
+  
+  
