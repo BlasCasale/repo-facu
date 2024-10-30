@@ -1,5 +1,4 @@
-{ ASUS 2024-10-30T16:32:40.705 }
-programa ejer3
+programa ejer3b
 procesos
   proceso juntarPapeles (ES p: numero)
   comenzar
