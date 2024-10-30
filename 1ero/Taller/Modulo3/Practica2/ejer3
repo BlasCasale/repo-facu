@@ -1,4 +1,3 @@
-{ ASUS 2024-10-30T16:32:40.705 }
 programa ejer3
 procesos
   proceso juntarPapeles (ES p: numero)
@@ -15,6 +14,7 @@ procesos
   fin
   proceso equipoA (ES p: numero)
   comenzar
+    derecha
     repetir 9
       juntarPapeles(p)
       mover
@@ -22,25 +22,21 @@ procesos
   fin
   proceso equipoB (ES f: numero)
   comenzar
+    derecha
     repetir 9
       juntarFlores(f)
       mover
     juntarFlores(f)
   fin
 areas
-  aA: AreaPC(1,1,40,1)
-  aB: AreaPC(1,5,40,5)
+  aA: AreaPC(1,1,20,1)
+  aB: AreaPC(1,5,20,5)
 robots
   robot a1
   variables
     p: numero
   comenzar
-    derecha
     p:= 0
-    equipoA(p)
-    EnviarMensaje(p, roA2)
-    RecibirMensaje(p, roA2)
-    Pos(21,1)
     equipoA(p)
     EnviarMensaje(p, roA2)
   fin
@@ -48,11 +44,6 @@ robots
   variables
     p: numero
   comenzar
-    derecha
-    RecibirMensaje(p, roA1)
-    equipoA(p)
-    EnviarMensaje(p, roA1)
-    Pos(31,1)
     RecibirMensaje(p, roA1)
     equipoA(p)
     Informar(p)
@@ -61,12 +52,7 @@ robots
   variables
     f: numero
   comenzar
-    derecha
     f:= 0
-    equipoB(f)
-    EnviarMensaje(f, roB2)
-    Pos(21,5)
-    RecibirMensaje(f, roB2)
     equipoB(f)
     EnviarMensaje(f, roB2)
   fin
@@ -74,11 +60,6 @@ robots
   variables
     f: numero
   comenzar
-    derecha
-    RecibirMensaje(f, roB1)
-    equipoB(f)
-    EnviarMensaje(f, roB1)
-    Pos(31,5)
     RecibirMensaje(f, roB1)
     equipoB(f)
     Informar(f)
