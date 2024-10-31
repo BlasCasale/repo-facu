@@ -1,0 +1,126 @@
+programa ejer1
+procesos
+  proceso juntarFlores
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+  fin
+  proceso dejarFlores
+  comenzar
+    mientras HayFlorEnLaBolsa
+      depositarFlor
+  fin
+  proceso juntarPapeles
+  comenzar
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+  fin
+  proceso dejarPapeles
+  comenzar
+    mientras HayPapelEnLaBolsa
+      depositarPapel
+  fin
+  proceso vaciarFlores (E miAv: numero; E miCa: numero)
+  comenzar
+    BloquearEsquina(10,10)
+    Pos(10,10)
+    dejarFlores
+    Pos(miAv, miCa)
+    LiberarEsquina(10,10)
+  fin
+  proceso vaciarPapeles (E miAv: numero; E miCa: numero)
+  comenzar
+    BloquearEsquina(10,10)
+    Pos(10,10)
+    dejarPapeles
+    Pos(miAv,miCa)
+    LiberarEsquina(10,10)
+  fin
+  proceso trabajoFlorero (E miAv: numero; E miCa: numero)
+  variables
+    av: numero
+    ca: numero
+  comenzar
+    repetir 5
+      Random(av, 1,5)
+      Random(ca, 1,10)
+      BloquearEsquina(av, ca)
+      Pos(av, ca)
+      juntarFlores
+      Pos(miAv, miCa)
+      LiberarEsquina(av, ca)
+  fin
+  proceso floreros
+  variables
+    miAv: numero
+    miCa: numero
+  comenzar
+    miAv:= PosAv
+    miCa:= PosCa
+    trabajoFlorero(miAv,miCa)
+    vaciarFlores(miAv,miCa)
+  fin
+  proceso trabajoPapelero (E miAv: numero; E miCa: numero)
+  variables
+    av: numero
+    ca: numero
+  comenzar
+    repetir 3
+      Random(av, 6,10)
+      Random(ca, 1,9)
+      BloquearEsquina(av,ca)
+      Pos(av,ca)
+      juntarPapeles
+      Pos(miAv, miCa)
+      LiberarEsquina(av,ca)  
+  fin
+  proceso papeleros
+  variables
+    miAv: numero
+    miCa: numero
+  comenzar
+    miAv:= PosAv
+    miCa:= PosCa
+    trabajoPapelero(miAv,miCa)
+    vaciarPapeles(miAv,miCa)
+  fin
+areas
+  aR1: AreaP(6,10,6,10)
+  aR2: AreaP(7,10,7,10)
+  aR3: AreaP(8,10,8,10)
+  aR4: AreaP(9,10,9,10)
+  aFlor: AreaPC(1,1,5,10)
+  aPapel: AreaPC(6,1,10,9)
+  depo: AreaC(10,10,10,10)
+robots
+  robot florero
+  comenzar
+    floreros
+  fin
+  robot papelero
+  comenzar
+    papeleros
+  fin
+variables
+  f1: florero
+  f2: florero
+  p1: papelero
+  p2: papelero
+comenzar
+  AsignarArea(f1,aR1)
+  AsignarArea(f1,aFlor)
+  AsignarArea(f1,depo)
+  AsignarArea(f2,aR2)
+  AsignarArea(f2,aFlor)
+  AsignarArea(f2,depo)
+  AsignarArea(p1,aR3)
+  AsignarArea(p1,aPapel)
+  AsignarArea(p1,depo)
+  AsignarArea(p2,aR4)
+  AsignarArea(p2,aPapel)
+  AsignarArea(p2,depo)
+  Iniciar(f1,6,10)
+  Iniciar(f2,7,10)
+  Iniciar(p1,8,10)
+  Iniciar(p2,9,10)
+fin

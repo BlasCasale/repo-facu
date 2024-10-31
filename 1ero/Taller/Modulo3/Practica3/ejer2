@@ -1,4 +1,3 @@
-{ ASUS 2024-10-31T16:48:23.818 }
 programa ejer2
 procesos
   proceso juntarFlores (ES f: numero)

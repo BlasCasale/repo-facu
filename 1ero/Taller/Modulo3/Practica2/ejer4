@@ -28,7 +28,7 @@ areas
   aR2: AreaP(30,1,30,1)
   aR3: AreaP(35,1,35,1)
   aR4: AreaP(40,1,40,1)
-  eJefe: AreaP(1,1,1,1)
+  aJefe: AreaP(1,1,1,1)
 robots
   robot r1
   variables
@@ -46,7 +46,7 @@ robots
       RecibirMensaje(trabajo, jefe)
       si trabajo
         RecibirMensaje(av, jefe)
-        RecibirMensaje(ac, jefe)
+        RecibirMensaje(ca, jefe)
         limpiarEsquina(av, ca)
         veces:= veces + 1
         EnviarMensaje(V, jefe)
@@ -61,6 +61,7 @@ robots
     ganador: numero
     id: numero
     max: numero
+    cant: numero
     act: numero
     av: numero
     ca: numero
@@ -71,17 +72,68 @@ robots
     EnviarMensaje(3, ro3)
     EnviarMensaje(4, ro4)
     repetir 10
-      EnviarMensaje(V, *)
+      Random(act,1,4)
+      Random(av, 25,75)
+      Random(ca,25,75)
+      si act = 1
+        EnviarMensaje(V, ro1)
+        EnviarMensaje(av,ro1)
+        EnviarMensaje(ca,ro1)
+      si act = 2
+        EnviarMensaje(V, ro2)
+        EnviarMensaje(av,ro2)
+        EnviarMensaje(ca,ro2)
+      si act = 3
+        EnviarMensaje(V, ro3)
+        EnviarMensaje(av,ro3)
+        EnviarMensaje(ca,ro3)
+      si act = 4
+        EnviarMensaje(V, ro4)
+        EnviarMensaje(av,ro4)
+        EnviarMensaje(ca,ro4)
       RecibirMensaje(termina, *)
     EnviarMensaje(F, ro1)
     EnviarMensaje(F, ro2)
     EnviarMensaje(F, ro3)
     EnviarMensaje(F, ro4)
-    RecibirMensaje(act,
-    
-    
-   
-  
-  
-  
-  
+    RecibirMensaje(max, ro1)
+    RecibirMensaje(ganador, ro1)
+    RecibirMensaje(cant, ro2)
+    RecibirMensaje(id, ro2)
+    si cant > max
+      max:= cant
+      ganador:= id
+    RecibirMensaje(cant, ro3)
+    RecibirMensaje(id, ro3)
+    si cant > max
+      max:= cant
+      ganador:= id
+    RecibirMensaje(cant, ro4)
+    RecibirMensaje(id, ro4)
+    si cant > max
+      max:= cant
+      ganador:= id
+    Informar(ganador)
+  fin
+variables
+  ro1: r1
+  ro2: r1
+  ro3: r1
+  ro4: r1
+  jefe: je
+comenzar
+  AsignarArea(ro1, aReco)
+  AsignarArea(ro1, aR1)
+  AsignarArea(ro2, aReco)
+  AsignarArea(ro2, aR2)
+  AsignarArea(ro3, aReco)
+  AsignarArea(ro3, aR3)
+  AsignarArea(ro4, aReco)
+  AsignarArea(ro4, aR4)
+  AsignarArea(jefe, aJefe)
+  Iniciar(ro1,25,1)
+  Iniciar(ro2,30,1)
+  Iniciar(ro3,35,1)
+  Iniciar(ro4,40,1)
+  Iniciar(jefe,1,1)
+fin
