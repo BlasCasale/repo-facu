@@ -1,0 +1,139 @@
+programa ejer3
+procesos
+  proceso juntarFlor (ES f: numero; ES continua: boolean)
+  comenzar
+    si HayFlorEnLaEsquina
+      f:= f + 1
+      tomarFlor
+    sino
+      continua:= F
+  fin
+  proceso decidirEsquina (ES av: numero; ES ca: numero)
+  variables
+    aux: numero
+  comenzar
+    Random(aux,2,10)
+    av:= aux
+    Random(aux,2,10)
+    ca:= aux
+  fin
+areas
+  aT: AreaPC(2,2,10,10)
+  a1: AreaP(2,1,2,1)
+  a2: AreaP(3,1,3,1)
+  a3: AreaP(4,1,4,1)
+  a4: AreaP(5,1,5,1)
+  aj: AreaP(1,1,1,1)
+robots
+  robot trabajador
+  variables
+    f: numero
+    av: numero
+    ca: numero
+    miAv: numero
+    miCa: numero
+    soy: numero
+    continua: boolean
+    trabaja: boolean
+  comenzar
+    f:= 0
+    miAv:= PosAv
+    miCa:= PosCa
+    RecibirMensaje(soy, jefe)
+    continua:= V
+    mientras continua
+      RecibirMensaje(trabaja, jefe)
+      si trabaja
+        RecibirMensaje(av, jefe)
+        RecibirMensaje(ca, jefe)
+        juntarFlor(f, trabaja)
+        EnviarMensaje(trabaja,jefe)
+      sino
+        continua:= F
+    EnviarMensaje(soy, jefe)
+    EnviarMensaje(f, jefe)
+  fin
+  robot je
+  variables
+    r: numero
+    rAct: numero
+    cant: numero
+    max: numero
+    av: numero
+    ca: numero
+    continua: boolean
+  comenzar
+    max:= 0
+    continua:= V
+    decidirEsquina(av,ca)
+    EnviarMensaje(1,r1)
+    EnviarMensaje(2,r2)
+    EnviarMensaje(3,r3)
+    EnviarMensaje(4,r4)
+    mientras continua
+      Random(rAct,1,4)
+      si rAct = 1
+        EnviarMensaje(V, r1)
+        EnviarMensaje(av,r1)
+        EnviarMensaje(ca,r1)
+      si rAct = 2
+        EnviarMensaje(V, r2)
+        EnviarMensaje(av,r2)
+        EnviarMensaje(ca,r2)
+      si rAct = 3
+        EnviarMensaje(V, r3)
+        EnviarMensaje(av,r3)
+        EnviarMensaje(ca,r3)
+      si rAct = 4
+        EnviarMensaje(V, r4)
+        EnviarMensaje(av,r4)
+        EnviarMensaje(ca,r4)
+      RecibirMensaje(continua, *)
+    EnviarMensaje(F, r1)
+    EnviarMensaje(F, r2)
+    EnviarMensaje(F, r3)
+    EnviarMensaje(F, r4)
+    RecibirMensaje(rAct, r1)
+    RecibirMensaje(cant, r1)
+    si cant > max
+      max:= cant
+      r:= rAct
+    RecibirMensaje(rAct, r2)
+    RecibirMensaje(cant, r2)
+    si cant > max
+      max:= cant
+      r:= rAct
+    RecibirMensaje(rAct, r3)
+    RecibirMensaje(cant, r3)
+    si cant > max
+      max:= cant
+      r:= rAct
+    RecibirMensaje(rAct, r4)
+    RecibirMensaje(cant, r4)
+    si cant > max
+      max:= cant
+      r:= rAct
+    Informar(r)
+  fin
+variables
+  r1: trabajador
+  r2: trabajador
+  r3: trabajador
+  r4: trabajador
+  jefe: je
+comenzar
+  AsignarArea(r1,a1)
+  AsignarArea(r1,aT)
+  AsignarArea(r2,a2)
+  AsignarArea(r2,aT)
+  AsignarArea(r3,a3)
+  AsignarArea(r3,aT)
+  AsignarArea(r4,a4)
+  AsignarArea(r4,aT)
+  AsignarArea(jefe,aj)
+  Iniciar(r1,2,1)
+  Iniciar(r2,3,1)
+  Iniciar(r3,4,1)
+  Iniciar(r4,5,1)
+  Iniciar(jefe,1,1)
+fin
