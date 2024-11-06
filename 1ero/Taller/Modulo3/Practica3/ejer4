@@ -1,4 +1,3 @@
-{ ASUS 2024-11-06T18:57:27.174 }
 programa ejer4
 procesos
   proceso chequearEsq (ES termina: boolean)
@@ -95,4 +94,3 @@ comenzar
   Iniciar(r4,9,12)
   Iniciar(jefe,1,1)
 fin
-      
