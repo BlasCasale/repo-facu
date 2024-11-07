@@ -1,0 +1,129 @@
+programa ejer2
+procesos
+  proceso juntarFlores (ES f: numero)
+  comenzar
+    mientras HayFlorEnLaEsquina
+      f:= f + 1
+      tomarFlor
+  fin
+  proceso juntarPapeles (ES p: numero)
+  comenzar
+    mientras HayPapelEnLaEsquina
+      p:= p + 1
+      tomarPapel
+  fin
+  proceso orientarse (E v: numero)
+  comenzar
+    repetir v
+      derecha
+  fin
+  proceso hacerAlto (E i: numero)
+  comenzar
+    repetir i
+      mover
+  fin
+  proceso hacerAncho (E i: numero)
+  comenzar
+    repetir i
+      mover
+  fin
+areas
+  ciudad: AreaC(1,1,31,31)
+robots
+  robot r1
+  variables
+    f: numero
+    i: numero
+  comenzar
+    f:= 0
+    i:= 5
+    repetir 5
+      si i = 1
+        hacerAlto(i)
+        juntarFlores(f)
+        orientarse(1)
+        BloquearEsquina(16,16)
+        hacerAncho(i)
+        EnviarMensaje(1, jefe)
+        orientarse(2)
+        hacerAncho(i)
+        LiberarEsquina(16,16)
+      sino
+        hacerAlto(i)
+        juntarFlores(f)
+        orientarse(1)
+        hacerAncho(i)
+        juntarFlores(f)
+        orientarse(3)
+        i:= i - 1
+    i:= 2
+    repetir 4
+      hacerAncho(i)
+      juntarFlores(f)
+      orientarse(1)
+      hacerAlto(i)
+      juntarFlores(f)
+      orientarse(3)
+      i:= i + 1
+    EnviarMensaje(f,jefe)
+  fin
+  robot r2
+  variables
+    p: numero
+    i: numero
+  comenzar
+    p:= 0
+    i:= 5
+    repetir 5
+      si i = 1
+        hacerAlto(i)
+        juntarPapeles(p)
+        orientarse(3)
+        BloquearEsquina(16,16)
+        hacerAncho(i)
+        orientarse(2)
+        EnviarMensaje(2,jefe)
+        hacerAncho(i)
+        LiberarEsquina(16,16)
+      sino
+        hacerAlto(i)
+        juntarPapeles(p)
+        orientarse(3)
+        hacerAncho(i)
+        juntarPapeles(p)
+        orientarse(1)
+        i:= i - 1
+    i:= 2
+    repetir 4
+      hacerAncho(i)
+      juntarPapeles(p)
+      orientarse(3)
+      hacerAlto(i)
+      juntarPapeles(p)
+      orientarse(1)
+      i:= i + 1
+    EnviarMensaje(p,jefe)
+  fin
+  robot je
+  variables
+    cant: numero
+    r: numero
+  comenzar
+    RecibirMensaje(r, *)
+    Informar(r)
+    repetir 2
+      RecibirMensaje(cant, *)
+      Informar(cant)
+  fin
+variables
+  ro1: r1
+  ro2: r2
+  jefe: je
+comenzar
+  AsignarArea(ro1,ciudad)
+  AsignarArea(ro2,ciudad)
+  AsignarArea(jefe,ciudad)
+  Iniciar(ro1, 1,1)
+  Iniciar(ro2, 31,1)
+  Iniciar(jefe, 15,1)
+fin

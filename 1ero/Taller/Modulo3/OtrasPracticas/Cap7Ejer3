@@ -1,0 +1,66 @@
+programa Cap7Ejer3
+procesos
+  proceso ContarPapel (ES papel: numero)
+  comenzar
+    papel:=0
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+      papel:=papel +1
+    repetir papel
+      depositarPapel
+  fin
+  proceso DejarFlor (E flor: numero; E papel: numero; ES condicion: boolean)
+  variables
+    aux: numero
+  comenzar
+    aux:=0
+    repetir flor
+      si (HayFlorEnLaBolsa)
+        depositarFlor
+        aux:=aux+1
+    si (aux < papel)
+      condicion:= ~condicion
+  fin
+  proceso RecorrerAv
+  variables
+    papeles: numero
+    esquinas: numero
+    flor: numero
+    condicion: boolean
+  comenzar
+    papeles:=0
+    esquinas:=0
+    flor:=0
+    condicion:=V
+    Pos(9,1)
+    mientras (PosCa < 100) & (condicion)
+      ContarPapel(papeles)
+      si (papeles > 0)
+        flor:=papeles +1
+        DejarFlor(flor,papeles, condicion)
+        esquinas:=esquinas +1
+      si (condicion)
+        mover
+      sino
+        Pos(9,1)
+    si (PosCa = 100)
+      ContarPapel(papeles)
+      si (papeles > 0)
+        flor:=papeles +1
+        DejarFlor(flor,papeles, condicion)
+        esquinas:=esquinas +1
+    Informar(esquinas)
+  fin
+areas
+  ciudad: AreaC(1,1,100,100)
+robots
+  robot robot1
+  comenzar
+    RecorrerAv
+  fin
+variables
+  R-info: robot1
+comenzar
+  AsignarArea(R-info,ciudad)
+  Iniciar(R-info,1,1)
+fin

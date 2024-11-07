@@ -1,0 +1,37 @@
+¡ bloquear recurso
+dado un recurso compartido (2 o mas procesos) que esta disponible se bloquea ese recurso
+para que otro proceso no pueda accederlo
+
+- consideraciones
+. puede realizarlo el programador o el sistema operativo
+. solo se bloquea el recurso libre. si el recurso ya esta bloqueado no debe intertarse bloquear
+. hay que bloquear un recurso cuando puede ser accedido por 2 o mas procesos
+
+¡ liberar recurso
+dado un recurso compartido (2 o mas procesos) BLOQUEADO el programador libera dicho
+recurso para que cualquier proceso pueda bloquearlo
+
+- consideraciones
+. puede realizarlo el programador o el sistema operativo
+. solo se libera el recurso ocupado. Si el recurso no esta bloqueado no se dede liberar
+. hay que liberar un recurso cuando puede ser accedido por dos o mas procesos
+
+BloquearEsquina(avenida,calle)
+
+BloquearEsquina(2,8)
+BloquearEsquina(PosAv + 1, PosCa)
+BloquearEsquina(ave,ca)
+
+LiberarEsquina(avenida, calle)
+
+LiberarEsquina(2,8)
+LiberarEsquina(PosAv + 1, PosCa)
+LiberarEsquina(ave,ca)
+
+cuando otro robot quiera usar o bloquear la misma esquina bloqueado, queda dormido
+esperando a que pueda ejecutar la inst hasta que se libere
+
+- una esquina debe ser bloqueda si existe la posibilidad de colision, sino no tiene sentido
+- las esquinas deben permanecer el menor tiempo posible bloqueadas
+- las esquinas deben ser bloqueadas antes de posicionarse
+- las esquinas deben desbloquearse luego de moverse a una esquina segura

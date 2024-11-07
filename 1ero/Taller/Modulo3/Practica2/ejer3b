@@ -1,0 +1,99 @@
+programa ejer3b
+procesos
+  proceso juntarPapeles (ES p: numero)
+  comenzar
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+      p:= p + 1
+  fin
+  proceso juntarFlores (ES f: numero)
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      f:= f + 1
+  fin
+  proceso equipoA (ES p: numero)
+  comenzar
+    repetir 9
+      juntarPapeles(p)
+      mover
+    juntarPapeles(p)
+  fin
+  proceso equipoB (ES f: numero)
+  comenzar
+    repetir 9
+      juntarFlores(f)
+      mover
+    juntarFlores(f)
+  fin
+areas
+  aA: AreaPC(1,1,40,1)
+  aB: AreaPC(1,5,40,5)
+robots
+  robot a1
+  variables
+    p: numero
+  comenzar
+    derecha
+    p:= 0
+    equipoA(p)
+    EnviarMensaje(p, roA2)
+    RecibirMensaje(p, roA2)
+    Pos(21,1)
+    equipoA(p)
+    EnviarMensaje(p, roA2)
+  fin
+  robot a2
+  variables
+    p: numero
+  comenzar
+    derecha
+    RecibirMensaje(p, roA1)
+    equipoA(p)
+    EnviarMensaje(p, roA1)
+    Pos(31,1)
+    RecibirMensaje(p, roA1)
+    equipoA(p)
+    Informar(p)
+  fin
+  robot b1
+  variables
+    f: numero
+  comenzar
+    derecha
+    f:= 0
+    equipoB(f)
+    EnviarMensaje(f, roB2)
+    Pos(21,5)
+    RecibirMensaje(f, roB2)
+    equipoB(f)
+    EnviarMensaje(f, roB2)
+  fin
+  robot b2
+  variables
+    f: numero
+  comenzar
+    derecha
+    RecibirMensaje(f, roB1)
+    equipoB(f)
+    EnviarMensaje(f, roB1)
+    Pos(31,5)
+    RecibirMensaje(f, roB1)
+    equipoB(f)
+    Informar(f)
+  fin
+variables
+  roA1: a1
+  roA2: a2
+  roB1: b1
+  roB2: b2
+comenzar
+  AsignarArea(roA1,aA)
+  AsignarArea(roA2,aA)
+  AsignarArea(roB1,aB)
+  AsignarArea(roB2,aB)
+  Iniciar(roA1,1,1)
+  Iniciar(roA2,11,1)
+  Iniciar(roB1,1,5)
+  Iniciar(roB2,11,5)
+fin     

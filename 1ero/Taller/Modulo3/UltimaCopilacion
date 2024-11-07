@@ -1,0 +1,98 @@
+{ ASUS 2024-11-06T18:57:27.174 }
+programa ejer4
+procesos
+  proceso chequearEsq (ES termina: boolean)
+  comenzar
+    si HayFlorEnLaEsquina
+      tomarFlor
+    sino
+      termina:= F
+  fin
+  proceso moverseYJuntar (E av: numero; E ca: numero; ES termina: boolean)
+  comenzar
+    BloquearEsquina(10,10)
+    Pos(10,10)
+    chequearEsq(termina)
+    BloquearEsquina(11,11)
+    Pos(11,11)
+    LiberarEsquina(10,10)
+    si HayFlorEnLaBolsa
+      depositarFlor
+    Pos(av,ca)
+    LiberarEsquina(11,11)
+  fin
+  proceso juntarFlores
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+  fin
+  proceso ultimoRobot (ES ultimo: numero)
+  comenzar
+    repetir 4
+      RecibirMensaje(ultimo, *)
+  fin
+areas
+  aT: AreaPC(10,10,10,10)
+  a1: AreaP(9,9,9,9)
+  a2: AreaP(9,10,9,10)
+  a3: AreaP(9,11,9,11)
+  a4: AreaP(9,12,9,12)
+  aj: AreaP(1,1,1,1)
+  depo: AreaC(11,11,11,11)
+robots
+  robot trabajador
+  variables
+    miAv: numero
+    miCa: numero
+    soy: numero
+    termina: boolean
+  comenzar
+    miAv:= PosAv
+    miCa:= PosCa
+    termina:= V
+    RecibirMensaje(soy, jefe)
+    mientras termina
+      moverseYJuntar(miAv,miCa,termina)
+    EnviarMensaje(soy, jefe)
+  fin
+  robot je
+  variables
+    ultimo: numero
+  comenzar
+    EnviarMensaje(1,r1)
+    EnviarMensaje(2,r2)
+    EnviarMensaje(3,r3)
+    EnviarMensaje(4,r4)
+    ultimoRobot(ultimo)
+    Informar(ultimo)
+    Pos(11,11)
+    juntarFlores
+  fin
+variables
+  r1: trabajador
+  r2: trabajador
+  r3: trabajador
+  r4: trabajador
+  jefe: je
+comenzar
+  AsignarArea(r1, a1)
+  AsignarArea(r1, aT)
+  AsignarArea(r1, depo)
+  AsignarArea(r2, a2)
+  AsignarArea(r2, aT)
+  AsignarArea(r2, depo)
+  AsignarArea(r3, a3)
+  AsignarArea(r3, aT)
+  AsignarArea(r3, depo)
+  AsignarArea(r4, a4)
+  AsignarArea(r4, aT)
+  AsignarArea(r4, depo)
+  AsignarArea(jefe, aj)
+  AsignarArea(jefe, depo)
+  Iniciar(r1,9,9)
+  Iniciar(r2,9,10)
+  Iniciar(r3,9,11)
+  Iniciar(r4,9,12)
+  Iniciar(jefe,1,1)
+fin
+      
