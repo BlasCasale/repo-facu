@@ -1,0 +1,26 @@
+programa Cap6Ejer6D
+procesos
+  proceso RecorrerAv (E av:numero)
+  comenzar
+    Pos(av,1)
+    repetir 99
+      mover
+  fin
+areas
+  ciudad: AreaC(1,1,100,100)
+robots
+  robot robot1
+  variables
+    num:numero
+  comenzar
+    num:=0
+    repetir 50
+      num:=num+2
+      RecorrerAv(num)
+  fin
+variables
+  R-info: robot1
+comenzar
+  AsignarArea(R-info,ciudad)
+  Iniciar(R-info,1,1)
+fin

@@ -1,0 +1,29 @@
+programa Cap6Ejer8
+procesos
+  proceso Avenida (E av:numero; E pasos:numero)
+  variables
+    correxion:numero
+  comenzar
+    correxion:=0
+    Pos(av,1)
+    si (pasos > 100)
+      correxion:=99
+      repetir correxion
+        mover
+    sino
+      repetir pasos
+        mover
+  fin
+areas
+  ciudad: AreaC(1,1,100,100)
+robots
+  robot robot1 
+  comenzar
+    Avenida(3,20)
+  fin
+variables
+  R-info: robot1
+comenzar
+  AsignarArea(R-info,ciudad)
+  Iniciar(R-info,1,1)
+fin     

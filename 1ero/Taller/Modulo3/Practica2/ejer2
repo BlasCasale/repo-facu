@@ -1,0 +1,95 @@
+programa ejer2
+procesos
+  proceso contarPapeles (ES p: numero)
+  comenzar
+    mientras HayPapelEnLaEsquina
+      p:= p + 1
+      tomarPapel
+    mientras HayPapelEnLaBolsa
+      depositarPapel
+  fin
+  proceso contarFlores (ES f: numero)
+  comenzar
+    mientras HayFlorEnLaEsquina
+      f:= f + 1
+      tomarFlor
+    mientras HayFlorEnLaBolsa
+      depositarFlor
+  fin
+  proceso hacerAlto (ES f: numero; ES p: numero)
+  comenzar
+    contarPapeles(p)
+    contarFlores(f)
+    mover
+    derecha
+  fin
+  proceso hacerAncho (ES f: numero; ES p: numero)
+  variables
+    i: numero
+  comenzar
+    Random(i,1,5)
+    contarFlores(f)
+    contarPapeles(p)
+    repetir i
+      mover
+      contarPapeles(p)
+      contarFlores(f)
+    repetir 3
+      derecha
+  fin
+  proceso hacerEscalon (ES esca: numero)
+  variables
+    f: numero
+    p: numero
+  comenzar
+    f:= 0
+    p:= 0
+    hacerAlto(f,p)
+    hacerAncho(f,p)
+    si f > p
+      esca:= esca + 1
+  fin
+  proceso hacerEscalera (ES esca: numero)
+  comenzar
+    repetir 4
+      hacerEscalon(esca)
+  fin
+areas
+  a1: AreaPC(2,1,30,25)
+  aj: AreaP(1,1,1,1)
+robots
+  robot r1
+  variables
+    esca: numero
+  comenzar
+    esca:= 0
+    hacerEscalera(esca)
+    EnviarMensaje(esca, jefe)
+  fin
+  
+  robot je
+  variables
+    esca: numero
+    tot: numero
+  comenzar
+    tot:= 0
+    repetir 3
+      RecibirMensaje(esca,*)
+      tot:= tot + esca
+    Informar(tot)
+  fin
+variables
+  ro1: r1
+  ro2: r1
+  ro3: r1
+  jefe: je
+comenzar
+  AsignarArea(ro1,a1)
+  AsignarArea(ro2,a1)
+  AsignarArea(ro3,a1)
+  AsignarArea(jefe,aj)
+  Iniciar(ro1,2,1)
+  Iniciar(ro2,7,1)
+  Iniciar(ro3,12,1)
+  Iniciar(jefe,1,1)
+fin

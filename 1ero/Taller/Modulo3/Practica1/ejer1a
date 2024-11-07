@@ -1,0 +1,55 @@
+{1) Realice un programa para que un robot junte todas las flores de la avenida 1 y las deposite al final}
+{de dicha avenida. Al finalizar, debe informar la cantidad de flores depositadas y la cantidad de}
+{esquinas sin flores que encontró durante el recorrido.}
+{a) Modifique el programa anterior para que el mismo robot realice lo mismo en las avenidas 1, 3}
+{y 5.}
+{b) Modifique el programa anterior para que el trabajo sea realizado por 3 robots: uno realiza la}
+{avenida 1, otro realiza la avenida 3 y otro la avenida 5. Cada robot debe iniciar en las esquina}
+{(1,1), (3,1) y (5,1) respectivamente.}
+programa ejer1
+procesos
+  proceso recorrerAvenida(E numAv: numero; ES cantFlo: numero; ES cantEsq: numero)
+  comenzar
+    Pos(numAv, 1)
+    repetir 99
+      mientras HayFlorEnLaEsquina
+        tomarFlor
+        cantFlo:= cantFlo + 1
+      si ~HayFlorEnLaEsquina
+        cantEsq:= cantEsq + 1
+      mover
+    mientras HayFlorEnLaBolsa
+      depositarFlor
+    si ~HayFlorEnLaEsquina
+      cantEsq:= cantEsq + 1
+    Informar(cantFlo)
+    Informar(cantEsq)
+    cantFlo:=0
+    cantEsq:= 0
+  fin
+  proceso avanzarTres 
+  variables
+    cantFlo: numero
+    cantEsq: numero
+    i: numero
+  comenzar
+    i:= 1
+    repetir 3
+      cantFlo:=0
+      cantEsq:= 0
+      recorrerAvenida(i, cantFlo, cantEsq)
+      i:= i + 2
+  fin
+areas
+  ciudad: AreaC (1,1,100,100)
+robots
+  robot robot1
+  comenzar
+    avanzarTres
+  fin
+variables
+  R_info: robot1
+comenzar
+  AsignarArea(R_info, ciudad)
+  Iniciar(R_info, 1,1)
+fin

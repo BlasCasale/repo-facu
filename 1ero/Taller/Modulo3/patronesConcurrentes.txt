@@ -1,0 +1,41 @@
+- sincronizacion por barrera
+. multiples procesos se ejecutan concurrentemente, hasta que llegan a un
+punto especial, llamado barrera
+. los procesos que llegan a la barrera deben detenerse y esperar que todos
+los procesos lleguen
+. cuando todos los procesos alcanzan la barrera, prodrán retomar su actividad
+(hasta finalizar o hasta alcanzar la próxima barrera)
+
+- passing the baton
+. multiples procesos se ejecutan en concurrente
+. solo un proceso a la vez, el que posee el testito (baton), se mantiene activo
+. cuando el proceso activo completa su tarea, entrega el baton a otro proceso
+el proceso que entrego el baton queda a la espera hasta recibirlo nuevamente
+. el proceso que recibio el baton completa su ejecucion. al completar su tarea,
+pasará el baton a otro proceso
+. para esto los procesos deben tener una forma de comunicarse con el otro proceso
+
+- productor/consumidor
+. existen dos tipos de procesos:
+. productores: trabajan para generar algun recurso y almacenarlo en un espacio compartido
+. consumidores: utilizan los recursos generados por los productores para realizar el trabajo
+. para eso los procesos deben coordinar donde almacenan los datos los productores,
+cuando saben los consumidores que hay datos
+
+- servidor/cliente
+. servidores: permanecen inactivos hasta que un cliente les solicita algo. cuando
+reciben una solicitud, realizan una tarea, entregan el resultado y vuelven a dormir
+hasta que otro cliente los despierte
+. clientes: realizan su trabajo de manera independiente, hasta que requieren algo de 
+un servidor. entonces realizan una solicitud a un proceso servidor, y esperan a recibir
+la respuesta. cuando sucede esto, el cliente continúa su trabajo.
+para esto los procesos cliente deben realizar sus pedidos y el servidor debe administrar
+como los atiende
+
+- master/slave
+. los procesos se agrupan en dos categorías
+. maestro: deriva tareas a otros procesos (trabajadores)
+. esclavos realizan la tarea solicitada y envian el resultado al jefe, quedando a la espera
+de la siguiente tarea
+. para esto el jefe determina cuantos trabajadores necesita, como les reparte la tarea, como
+recibe los resultados
