@@ -29,8 +29,8 @@ begin
     begin
       write('Ingrese la temperatura: ');
       readln(temp);
-      point[i].data:= temp;
-      point[i].length:= i + 1;
+      point.data[i]:= temp;
+      point.length:= i + 1;
       acc:= acc + temp;
       if (max <= temp) then
         begin
@@ -45,8 +45,8 @@ var
 begin
   for i:= 0 to months do
     begin
-      chargePoints(month[i], acc, max, actualYear);
-      month[i].lentgh:= i + 1;
+      chargePoints(month[i], acc, max, maxYear, actualYear);
+      month.lentgh:= i + 1;
     end;
 end;
   {
