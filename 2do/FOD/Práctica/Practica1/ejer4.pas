@@ -170,6 +170,27 @@ begin
   close(a);
 end;
 
+procedure optionF (var a: archive);
+var
+  e: employee;
+  na: archive;
+begin
+  assign(na, 'faltaDNIEmpleado.txt');
+  rewrite(na);
+
+  reset(a);
+
+  while (not eof(a)) do
+    begin
+      read(a, e);
+      if (e.dni <> 0) then
+        write(na, e);        
+    end;
+  
+  close(a);
+  close(na);
+end;
+
 {
   Agregar al menú del programa del ejercicio 3, opciones para:
   a. Añadir una o más empleados al final del archivo con sus datos ingresados por
@@ -183,15 +204,16 @@ end;
 }
 
 var
-  arch: archive;
+  arch, newA: archive;
   c: char;
+  e: employee;
 begin
   assign(arch, 'empleados.txt');
 
   writeln('A) Ingresar los empleados.');
   writeln('B) Listar los empleados.');
-  writeln('C) Añadir una o más empleados.');
-  writeln('D) Modificar edad a una o más empleados.');
+  writeln('C) Aniadir una o mas empleados.');
+  writeln('D) Modificar edad a una o mas empleados.');
   writeln('E) Exportar el archivo.');
   writeln('F) Exportar a un archivo los empleados sin DNI (00).');
   readln(c);
@@ -202,6 +224,7 @@ begin
     'C', 'c': optionC(arch);
     'D', 'd': optionD(arch);
     'E', 'e': optionE(arch);
+    'F', 'f': optionF(arch);
   end;
 
 end.
