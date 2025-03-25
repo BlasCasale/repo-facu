@@ -5,14 +5,14 @@ admite concurrencia, genericos y administra memoria
 es portable
 */
 
-package main
+package teoria
 
 import (
 	"fmt"
 	"math/rand"
 )
 
-func main () {
+func teoria1 () {
 	fmt.Println("Hello world")
 	fmt.Println(rand.Intn(10))
 
