@@ -1,0 +1,8 @@
+1) Indique  las  diferencias  entre  un  lenguaje  interpretado  y  uno 
+compilado.  Indique  ejemplos de cada uno si conoce. ¿En cuál 
+catalogaría a Go ?
+
+Un lenguaje de tipo interpretado es aquel que se ejecuta directamente, sin la necesidad de compilarlo previamente. El interprete del programa
+es el que lee y ejecuta el código fuente, ejemplo de este tipo de lenguaje es Javascript, PHP, Python.
+Un lenguaje de tipo compilado es aquel que se traduce a código máquina para poder ser ejecutado, esto es llevado a cabo por el compilador.
+Ejemplos de estos tipo de lenguaje es Go, Rust, C y C++.
