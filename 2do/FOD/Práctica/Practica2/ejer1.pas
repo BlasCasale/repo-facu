@@ -1,77 +1,127 @@
 program ejer1;
+
+{
+Una empresa posee un archivo con informaci�n de los ingresos percibidos por diferentes empleados en concepto de comisi�n,
+de cada uno de ellos se conoce: c�digo de empleado, nombre y monto de la comisi�n. La informaci�n del archivo se encuentra
+ordenada por c�digo de empleado y cada empleado puede aparecer m�s de una vez en el archivo de comisiones.
+
+Realice un procedimiento que reciba el archivo anteriormente descrito y lo compacte. En consecuencia, deber� generar un
+nuevo archivo en el cual, cada empleado aparezca una �nica vez con el valor total de sus comisiones.
+
+NOTA: No se conoce a priori la cantidad de empleados. Adem�s, el archivo debe ser recorrido una �nica vez.
+}
+
 const
-  cut = 0;
+     highCode = 9999;
+
 type
+    employee = record
+             id: integer;
+             name: string[50];
+             amount: real;
+    end;
 
-  employee = record
-    id: integer;
-    name: string[20];
-    earnings: real;
-  end;
+    archive = file of employee;
 
-  archive = file of employee;
+procedure readArchive (var a: archive; var e: employee);
+begin
+     if (not eof(a)) then
+        read(a, e)
+     else
+         e.id:= highCode;
+end;
 
 procedure setInfo (var e: employee);
 begin
-  with e do
-    begin
-      writeln('ID');
-      readln(id);
-      if (id <> cut) then
+     writeln('ID: ');
+     readln(e.id);
+     if (e.id <> highCode) then
         begin
-          writeln('Nombre');
-          readln(name);
-          writeln('Comisiones');
-          readln(earnings);
+             writeln('Nombre: ');
+             readln(e.name);
+             writeln('Comision: ');
+             readln(e.amount);
         end;
-    end;
 end;
-{
-  Una empresa posee un archivo con información de los ingresos percibidos por diferentes
-  empleados en concepto de comisión, de cada uno de ellos se conoce: código de empleado,
-  nombre y monto de la comisión. La información del archivo se encuentra ordenada por
-  código de empleado y cada empleado puede aparecer más de una vez en el archivo de
-  comisiones.
-  Realice un procedimiento que reciba el archivo anteriormente descripto y lo compacte. En
-  consecuencia, deberá generar un nuevo archivo en el cual, cada empleado aparezca una
-  única vez con el valor total de sus comisiones.
-  NOTA: No se conoce a priori la cantidad de empleados. Además, el archivo debe ser
-  recorrido una única vez.
-}
-procedure addEmploye (var a: archive);
+
+procedure addEmployees (var a: archive);
 var
-  ant, act, e: employee;
+   e: employee;
 begin
-  reset(a);
-  setInfo(e);
+     reset(a);
+     seek(a, filesize(a));
+     setInfo(e);
+     while (e.id <> highCode) do
+           begin
+                write(a, e);
+                setInfo(e);
+           end;
 
-  while (e.id <> cut) do
-    begin
-      if (not eof(a)) then
-        begin
-          read(a, act);
-          while (e.id < act.id) do
-            begin
-              ant:= act;
-              read(a, act);
-            end;
-          seek(a, filepos(a) - 1);
-          write(a, e);
-          while (not eof(a)) do
-            begin
-              read(a, ant);
-              seek(a, filepos(a) - 1);
-              write(a, act);
-            end;
-        end
-      else
-        write(a, e);
-
-      setInfo(e);
-    end;
+     close(a);
 end;
+
+procedure resumeArchive (var a, na: archive);
 var
-
+   e, toW: employee;
+   tot: real;
+   act: integer;
+   str: string[50];
 begin
+     reset(a);
+     reset(na);
+    readArchive(a, e);
+    while (e.id <> highCode) do
+          begin
+               tot:= 0;
+               act:= e.id;
+               str:= e.name;
+               while (e.id <> highCode) and (act = e.id) do
+                     begin
+                         tot:= e.amount + tot;
+                         readArchive(a, e);
+                     end;
+               toW.id:= act;
+               toW.amount:= tot;
+               toW.name:= str;
+               write(na, toW);
+          end;
+    close(a);
+    close(na);
+end;
 
+procedure printArchive (var a: archive);
+var
+   e: employee;
+begin
+    reset(a);
+    readArchive(a, e);
+    while (e.id <> highCode) do
+          begin
+              writeln('ID: ', e.id);
+              writeln('Nombre: ', e.name);
+              writeln('Cosimion: ', e.amount:0:2);
+              readArchive(a, e);
+          end;
+end;
+
+var
+   a, nA: archive;
+   i: integer;
+begin
+     assign(a, 'detalleEmp.txt');
+     assign(nA, 'resumenEmp.txt');
+
+     writeln('1) Agregar comisiones de los empleados.');
+     writeln('2) Resumir a un archivo todas las comisiones.');
+     writeln('3) Imprimir detalle.');
+     writeln('4) Imprimir resumen.');
+
+     readln(i);
+
+     case i of
+          1: addEmployees(a);
+          2: resumeArchive(a, nA);
+          3: printArchive(a);
+          4: printArchive(nA);
+     end;
 end.
