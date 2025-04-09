@@ -1,0 +1,10 @@
+1 0 0 blas casale
+2 0 0 jazmin aranda
+3 0 0 nicolas galdos
+4 0 0 ezequiel baamonde
+5 0 0 sebastian basmachi
+6 0 0 thomas carabelli
+7 0 0 joaquin casale
+8 0 0 luisina casale
+9 0 0 manuel martinez
+10 0 0 amancio torras
