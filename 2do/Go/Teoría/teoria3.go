@@ -2,7 +2,7 @@ package teoria
 
 import "fmt"
 
-func main() {
+func teoria3() {
 	// secuencia indexada de elementos de un mismo tipo, de longitud fija
 
 	// var x [5]int
