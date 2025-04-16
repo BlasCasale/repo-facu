@@ -58,7 +58,41 @@ end;
 }
 
 var
-
+  logs, mails, report: text;
+  m: mail;
+  l: log;
+  count, i: integer;
 begin
+  assign(logs, 'logsMail.txt');
+  assign(mails, 'mailsUsuarios.txt');
+  assign(report, 'resporteMails.txt');
 
+  reset(mails);
+  reset(logs);
+  rewrite(report);
+
+  readMail(mails, m);
+  readLog(logs, l);
+
+  i:= 0;
+
+  while (m.id <> highValue) do
+    begin
+      counts:= 0;
+      i:= 1;
+      while (m.id <> l.id) do
+        readLog(logs, l);
+
+      while (m.id = l.id) do
+        begin
+          readMail(mails, m);
+          count:= count + 1;
+        end;
+
+      writeln(report, 'Numero de usuario ', i, ' envio ', count, ' mails.');
+    end;
+
+  close(mails);
+  close(logs);
+  close(report);
 end.
