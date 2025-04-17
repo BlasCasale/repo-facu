@@ -1,0 +1,31 @@
+1830 7 29/04/2025 Bariloche
+230 5 07/05/2025 Bahía Blanca
+230 1 07/05/2025 Bahía Blanca
+730 2 20/04/2025 Buenos Aires
+730 1 20/04/2025 Buenos Aires
+930 3 21/04/2025 Córdoba
+930 2 21/04/2025 Córdoba
+330 7 08/05/2025 El Calafate
+430 4 09/05/2025 Río Gallegos
+430 2 09/05/2025 Río Gallegos
+1630 6 27/04/2025 Iguazú
+2030 3 01/05/2025 Jujuy
+2030 4 01/05/2025 Jujuy
+2230 6 03/05/2025 La Rioja
+1530 3 26/04/2025 Mar del Plata
+1130 1 22/04/2025 Mendoza
+1130 2 22/04/2025 Mendoza
+1730 4 28/04/2025 Neuquén
+1730 2 28/04/2025 Neuquén
+1230 4 23/04/2025 Rosario
+1330 2 24/04/2025 Salta
+1330 3 24/04/2025 Salta
+2130 1 02/05/2025 San Juan
+2330 4 04/05/2025 Santiago del Estero
+30 3 05/05/2025 Santa Fe
+30 2 05/05/2025 Santa Fe
+1930 2 30/04/2025 Tucumán
+1930 1 30/04/2025 Tucumán
+130 2 06/05/2025 Trelew
+1430 5 25/04/2025 Ushuaia
+1430 1 25/04/2025 Ushuaia
