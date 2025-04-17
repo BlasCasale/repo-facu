@@ -1,0 +1,30 @@
+1 1 50 40 30 20 10 Buenos Aires La Plata
+1 2 45 35 25 15 5 Buenos Aires Mar del Plata
+2 3 60 50 40 30 20 Córdoba Córdoba Capital
+2 4 55 45 35 25 15 Córdoba Villa María
+3 5 40 30 20 10 5 Mendoza Mendoza Capital
+3 6 38 28 18 8 4 Mendoza San Rafael
+4 7 70 60 50 40 30 Santa Fe Rosario
+4 8 65 55 45 35 25 Santa Fe Santa Fe Capital
+5 9 30 20 15 10 5 Salta Salta Capital
+5 10 25 15 10 5 2 Salta Tartagal
+6 11 35 25 20 15 10 Jujuy San Salvador de Jujuy
+6 12 28 18 14 9 4 Jujuy Palpalá
+7 13 50 40 30 20 10 San Juan San Juan Capital
+7 14 45 35 25 15 5 San Juan Caucete
+8 15 55 45 35 25 15 La Rioja La Rioja Capital
+8 16 52 42 32 22 12 La Rioja Chilecito
+9 17 60 50 40 30 20 Entre Ríos Paraná
+9 18 58 48 38 28 18 Entre Ríos Concordia
+10 19 70 60 50 40 30 Neuquén Neuquén Capital
+10 20 65 55 45 35 25 Neuquén San Martín de los Andes
+11 21 45 35 25 15 5 Río Negro Viedma
+11 22 40 30 20 10 5 Río Negro Bariloche
+12 23 50 40 30 20 10 Chubut Rawson
+12 24 48 38 28 18 8 Chubut Trelew
+13 25 60 50 40 30 20 Tucumán San Miguel de Tucumán
+13 26 58 48 38 28 18 Tucumán Tafí Viejo
+14 27 55 45 35 25 15 Chaco Resistencia
+14 28 52 42 32 22 12 Chaco Sáenz Peña
+15 29 40 30 20 10 5 Misiones Posadas
+15 30 38 28 18 8 4 Misiones Oberá
