@@ -1,7 +1,188 @@
 program ejer3;
-
+const
+  highValue = 9999;
+  cut = 0;
 type
 
+  novel = record
+    id: integer;
+    gender: string[10];
+    name: string[20];
+    director: string[20];
+    duration: integer;
+    price: real;
+  end;
+
+  archive = file of novel;
+
+procedure setInfo (var n: novel);
+begin
+  writeln('ID: (corte con 0)');
+  readln(n.id);
+  if (n.id <> cut) then
+    begin
+      writeln('Nombre:');
+      readln(n.name);
+      writeln('Genero:');
+      readln(n.gender);
+      writeln('Director:');
+      readln(n.director);
+      writeln('Duracion:');
+      readln(n.duration);
+      writeln('Precio:');
+      readln(n.price);
+    end;
+end;
+
+procedure readArchive (var a: archive; var n: novel);
+begin
+  if (not eof(a)) then
+    read(a, n)
+  else
+    n.id:= highValue;
+end;
+
+procedure deleteRegister (var a: archive; id: integer);
+var
+  n: novel;
+  rc, i: integer;
+begin
+  reset(a);
+
+  readArchive(a, n);
+
+  rc:= n.id;
+
+  while ((n.id <> highValue) and (n.id <> id)) do
+    readArchive(a, n);
+
+  if ((n.id = id) and (n.id <> highValue)) then
+    begin
+      if (rc = 0) then
+        begin
+          n.id := 0;
+          seek(a, filepos(a) - 1);
+          i:= filepos(a);
+          write(a, n);
+          seek(a, 0);
+          n.id:= i * (-1);
+          write(a, n);
+        end
+      else
+        begin
+          seek(a, filepos(a) - 1);
+          n.id:= rc;
+          i:= filepos(a);
+          write(a, n);
+          seek(a, 0);
+          n.id:= i * (-1);
+          write(a, n);
+        end;
+      writeln('Se elimino correctamente el registro.');
+    end
+  else
+    writeln('No se ha encontrado el registro buscado.');
+
+  close(a);
+end;
+
+procedure addNovel (var a: archive; n: novel);
+var
+  nn: novel;
+  rc: integer;
+begin
+  reset(a);
+  readArchive(a, nn);
+  if (nn.id = highValue) then
+    begin
+      nn.id:= 0;
+      seek(a, 0);
+      write(a, nn);
+      write(a, n);
+    end
+  else
+    begin
+      rc:= nn.id * (-1);
+      if (nn.id = 0) then
+        begin
+          seek(a, filesize(a));
+          write(a, n);
+        end
+      else
+        begin
+          seek(a, rc);
+          read(a, nn);
+          seek(a, rc);
+          write(a, n);
+          seek(a, 0);
+          write(a, nn);
+        end;
+    end;
+  close(a);
+end;
+
+procedure addNovels (var a: archive);
+var
+  n: novel;
+begin
+  setInfo(n);
+  while (n.id <> cut) do
+    begin
+      addNovel(a, n);
+      setInfo(n);
+    end;
+end;
+
+procedure updateRegister (var a: archive; id: integer);
+var
+  n: novel;
+begin
+  reset(a);
+  readArchive(a, n);
+  while ((n.id <> highValue) and (n.id <> id)) do
+    readArchive(a, n);
+
+  if (n.id = id) then
+    begin
+      writeln('Nuevo genero');
+      readln(n.gender);
+      writeln('Nuevo nombre');
+      readln(n.name);
+      writeln('Nueva duracion');
+      readln(n.duration);
+      writeln('Nuevo director');
+      readln(n.director);
+      writeln('Nuevo precio');
+      readln(n.price);
+      seek(a, filepos(a) - 1);
+      write(a, n);
+      writeln('Registro actualizado');
+    end
+  else
+    writeln('No se encontro la novela con el id ', id);
+  close(a);
+end;
+
+procedure createText (var a: archive);
+var
+  t: text;
+  n: novel;
+begin
+  assign(t, 'novelas.txt');
+  rewrite(t);
+  reset(a);
+  readArchive(a, n);
+  while (n.id <> highValue) do
+    begin
+      writeln(t, n.id, ' ', n.gender);
+      writeln(t, n.duration, ' ', n.name);
+      writeln(t, n.price:0:2, ' ', n.director);
+      readArchive(a, n);
+    end;
+
+  close(a);
+  close(t);
+end;
 {
   Realizar un programa que genere un archivo de novelas filmadas durante el presente 
   año. De cada novela se registra: código, género, nombre, duración, director  y precio. 
@@ -39,7 +220,39 @@ type
   proporcionado por el usuario
 }
 var
-
+  a: archive;
+  s: string[20];
+  i, id: integer;
 begin
+  writeln('Ingrese el nombre del archivo de novelas: ');
+  readln(s);
+  assign(a, s + '.txt');
+  rewrite(a);
+
+  repeat
+    writeln('1) Crear nuevos registros.');
+    writeln('2) Borrar registros (busqueda por id).');
+    writeln('3) Actualizar registros (busqueda por id).');
+    writeln('4) Crear un archivo de texto con el archivo de novelas.');
+    writeln('Terminar programa ingresando 0.');
+    readln(i);
+    
+    case i of
+      1: addNovels(a);
+      2: 
+        begin
+          writeln('Ingrese el id a eliminar: ');
+          readln(id);
+          deleteRegister(a, id);
+        end;
+      3: 
+        begin
+          writeln('Ingrese el id de la novela a actualizar: ');
+          readln(id);
+          updateRegister(a, id);
+        end;
+      4: createText(a);
+    end;
+  until i = 0;
 
 end.
