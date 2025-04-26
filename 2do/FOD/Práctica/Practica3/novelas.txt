@@ -1,0 +1,18 @@
+0 comedia
+143 kung fu panda
+234.56 pirulo
+1 accion
+143 los indestructibles
+32.40 stallone
+9 suspenso
+123 antonio
+34.50 antonio
+18 accion
+134 los perdidos
+3.45 travolta
+4 accion
+137 piratas
+458.65 cameron
+5 fantasia
+168 harry potter
+34.70 rowling
