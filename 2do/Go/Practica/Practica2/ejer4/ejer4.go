@@ -3,6 +3,7 @@ package ejer4
 import (
 	"bufio"
 	"fmt"
+	"math"
 	"os"
 	"strconv"
 )
@@ -22,9 +23,6 @@ Integer y Float. Arreglos. Funciones que retornan más de un valor.
 
 func readArchive() []int {
 	scanner := bufio.NewScanner(os.Stdin)
-	if !scanner.Scan() {
-		panic("No se encontro el archivo")
-	}
 	scanner.Split(bufio.ScanWords)
 
 	var numbers []int
@@ -49,14 +47,64 @@ func checkLen(v []int) {
 	}
 }
 
+func productoria(v []int) int {
+	var total int
+
+	for _, el := range v {
+		total = total * int(math.Pow(float64(el), 3))
+	}
+
+	return total
+}
+
+func sumatoria(v []int) float64 {
+	var total float64
+
+	for _, el := range v {
+		total = total + float64(1/el)
+	}
+
+	return total
+}
+
+func maxMin(v []int) (int, int) {
+	var max, min int = 0, 9999
+
+	for _, el := range v {
+		if el < min {
+			min = el
+		}
+		if el > max {
+			max = el
+		}
+	}
+
+	return max, min
+}
+
 func Ejer4() {
 
 	numbers := readArchive()
 
+	fmt.Println(numbers, len(numbers))
+
 	checkLen(numbers)
 
 	n := len(numbers) / 3
-	v1 := numbers[0:n]
-	v2 := numbers[n : n*2]
-	v3 := numbers[n*2 : n*3]
+
+	successions := [3][]int{numbers[0:n], numbers[n : n*2], numbers[n*2 : n*3]}
+
+	sum := sumatoria(successions[0])
+	prod := productoria(successions[2])
+	max, min := maxMin(successions[1])
+
+	r := sum - float64(prod)
+
+	maxMulti := float64(max) * r
+
+	minMulti := float64(min) * r
+
+	fmt.Printf("El valor maximo multiplcado por la sumatoria menos la productoria es %f", maxMulti)
+	fmt.Println("")
+	fmt.Printf("El valor minimo multiplcado por la sumatoria menos la productoria es %f", minMulti)
 }
