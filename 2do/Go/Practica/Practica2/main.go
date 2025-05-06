@@ -1,7 +1,7 @@
 package main
 
-import ejer3 "practica2/ejer3"
+import ejer4 "practica2/ejer4"
 
 func main() {
-	ejer3.Ejer3C()
+	ejer4.Ejer4()
 }
