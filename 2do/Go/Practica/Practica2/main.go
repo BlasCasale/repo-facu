@@ -1,7 +1,9 @@
 package main
 
-import ejer4 "practica2/ejer4"
+import (
+	"practica2/ejer8"
+)
 
 func main() {
-	ejer4.Ejer4()
+	ejer8.Ejer8()
 }
