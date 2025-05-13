@@ -1,5 +1,11 @@
 package ejer9
 
+import (
+	"container/list"
+	"fmt"
+	"practica2/structs"
+)
+
 /*
 Usando memoria dinámica con punteros escribir una programa que implemente
 y use una lista enlazada de enteros.
@@ -30,5 +36,33 @@ para mejorar la interfaz y ver la posibilidad de retornar más de un valor
 con código de errores en los casos que sea necesario
 */
 func Ejer9() {
+	l := structs.New()
 
+	ll := list.New()
+
+	ll.PushFront(1)
+	ll.PushFront(1)
+	ll.PushFront(1)
+	ll.PushFront(1)
+
+	for e := ll.Front(); e != nil; e = e.Next() {
+		fmt.Println(e.Value)
+	}
+
+	for e := ll.Back(); e != nil; e = e.Prev() {
+		fmt.Println(e.Value)
+	}
+
+	structs.PushFront(l, 3)
+	structs.PushFront(l, 3)
+	structs.PushFront(l, 3)
+	structs.PushFront(l, 3)
+
+	fmt.Println(structs.ToString(l))
+
+	structs.Iterate(l, structs.AddInList)
+
+	fmt.Println(structs.ToString(l))
+
+	structs.GenericList()
 }
