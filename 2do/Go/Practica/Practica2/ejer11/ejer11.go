@@ -1,5 +1,7 @@
 package ejer11
 
+import "practica2/structs"
+
 /*
 Implementar el tipo de datos Ingresante y la funcionalidad solicitada.
 a.  Definir  el  tipo  de  datos  Ingresante  del  cual  se  tiene  la  siguiente
@@ -22,5 +24,5 @@ Interfaz Stringer. Pensar cómo encapsular código, orientar al alumno a
 pensar en packages. Métodos para mejorar la interfaz.
 */
 func Ejer11() {
-
+	structs.Inco()
 }
