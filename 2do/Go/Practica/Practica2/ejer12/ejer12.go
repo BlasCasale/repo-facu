@@ -1,5 +1,10 @@
 package ejer12
 
+import (
+	"errors"
+	"fmt"
+)
+
 /*
 Un  banco  dispone  de  un  listado  en  donde  almacena  la  información de
 aquellos  clientes que vienen a pagar impuestos. De cada cliente conoce: DNI,
@@ -14,6 +19,8 @@ c.  Al  finalizar  la  atención  informar,  en  caso  de  que  hayan  quedado, 
 cantidad de clientes sin atender
 */
 
+const dimF = 4
+
 type CodeBill map[string]int
 
 type Client struct {
@@ -24,10 +31,30 @@ type Client struct {
 	amount   float32
 }
 
-func Ejer12() {
+func processClients(clients []Client) (int, [dimF]int, error) {
+	if len(clients) == 0 {
+		return 0, [dimF]int{}, errors.New("el vector enviado no tiene clientes")
+	}
 	codes := CodeBill{"A": 0, "B": 1, "C": 2, "D": 3}
 
-	var clients = []Client{
+	var ocurrences [dimF]int
+
+	var total float32
+
+	var i int
+	for total < 10000 && i < len(clients) {
+		client := clients[i]
+
+		ocurrences[codes[client.code]]++
+		total += client.amount
+		i++
+	}
+
+	return i, ocurrences, nil
+}
+
+func getClients() []Client {
+	return []Client{
 		{dni: 12345678, name: "Juan", lastName: "Pérez", code: "A", amount: 1500.50},
 		{dni: 87654321, name: "María", lastName: "Gómez", code: "B", amount: 2500.75},
 		{dni: 11223344, name: "Carlos", lastName: "Rodríguez", code: "C", amount: 1800.00},
@@ -45,15 +72,39 @@ func Ejer12() {
 		{dni: 99112233, name: "Valentina", lastName: "Rivas", code: "C", amount: 2870.60},
 		{dni: 55664433, name: "Federico", lastName: "Alonso", code: "D", amount: 3999.99},
 	}
+}
 
-	var ocurrences [4]int
-
-	var total float32
-
-	for total < 10000 && len(clients) > 0 {
-		client := clients[0]
-		clients = clients[1:]
-
+func getMax(ocurrences [dimF]int) int {
+	var max, index int
+	for i, el := range ocurrences {
+		if el >= max {
+			max = el
+			index = i
+		}
 	}
 
+	return index
+}
+
+func getMostUsedCode(index int) string {
+	codeList := []string{"A", "B", "C", "D"}
+	return codeList[index]
+}
+
+func Ejer12() {
+	clients := getClients()
+
+	i, ocurrences, error := processClients(clients)
+
+	if error == nil {
+		index := getMax(ocurrences)
+
+		code := getMostUsedCode(index)
+
+		fmt.Printf("El codigo que mas se ha pagado fue el %s", code)
+
+		fmt.Println("")
+
+		fmt.Printf("La cantidad de clientes sin atender fue de %d", len(clients)-i)
+	}
 }

@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// este recibe un canal de salida
 func counter(out chan<- int) {
 	for x := 0; x < 10; x++ {
 		out <- x
@@ -9,6 +10,7 @@ func counter(out chan<- int) {
 	close(out)
 }
 
+// este recibe un canal de entrada y otro de salida
 func squarer(in <-chan int, out chan<- int) {
 	for x := range in {
 		out <- x * x
@@ -16,6 +18,7 @@ func squarer(in <-chan int, out chan<- int) {
 	close(out)
 }
 
+// este recibe el canal de entrada
 func printer(in <-chan int) {
 	for x := range in {
 		fmt.Println(x)

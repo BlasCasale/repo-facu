@@ -122,18 +122,18 @@ func teoria4() {
 
 	// declaracion de tipos
 
-	var fl MyFloat = 3.14
-	var float float32 = 3.14
-	fmt.Println(fl == float) // mismatched types
+	// var fl MyFloat = 3.14
+	// var float float32 = 3.14
+	// fmt.Println(fl == float) // mismatched types
 
 	// casting
-	var str MyString = "hola"
-	var str2 MyString2 = "hola"
-	fmt.Println(str == str2) // mismatched types
+	// var str MyString = "hola"
+	// var str2 MyString2 = "hola"
+	// fmt.Println(str == str2) // mismatched types
 
-	var str3 string = "hola"
-	var str4 MyString2 = MyString2(str3)
-	fmt.Println(str4 == str2) // casteando el string puedo lograr que pueda operar dentro de mi tipo
+	// var str3 string = "hola"
+	// var str4 MyString2 = MyString2(str3)
+	// fmt.Println(str4 == str2) // casteando el string puedo lograr que pueda operar dentro de mi tipo
 
 	// metodos
 
@@ -152,10 +152,10 @@ func teoria4() {
 	num1.Scale(2)
 	fmt.Println(num1)
 
-	var ptr1 *MyFloat = MyFloat(math.Sqrt2)
-	fmt.Println(*ptr1)
-	ptr1.Scale2(2)
-	fmt.Println(*ptr1) // el valor cambia porque se esta trabajando sobre la direccion de memoria, entonces cambio el valor
+	// var ptr1 *MyFloat = MyFloat(math.Sqrt2)
+	// fmt.Println(*ptr1)
+	// ptr1.Scale2(2)
+	// fmt.Println(*ptr1) // el valor cambia porque se esta trabajando sobre la direccion de memoria, entonces cambio el valor
 
 	fl1 := MyFloat(3.43)
 	ptr2 := &fl1
@@ -244,7 +244,7 @@ func teoria4() {
 	str7, ok := newI.(int)
 	fmt.Println(str7, ok) // 0 false
 
-	f = newI.(float64) // runtime error
+	// f = newI.(float64) // runtime error
 
 	// type switch
 
