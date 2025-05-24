@@ -21,6 +21,20 @@ func NewNode[T any](v T) *List[T] {
 	}
 }
 
+func AddNode[T any](v T, l *List[T]) {
+	node := &Node[T]{data: v, next: nil}
+
+	if l.first == nil {
+		l.first = node
+		l.last = node
+		l.quantity = 1
+	} else {
+		l.last.next = node
+		l.last = node
+		l.quantity++
+	}
+}
+
 func InsertOrder[T any](v T, f func(T, T) bool, l *List[T]) {
 	node := &Node[T]{data: v}
 
