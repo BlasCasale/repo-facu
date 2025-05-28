@@ -1,9 +1,9 @@
 package main
 
 import (
-	practica3 "practica3/ejer6"
+	"practica3/obligatorios/ejer1"
 )
 
 func main() {
-	practica3.Ejer6()
+	ejer1.Ejer1()
 }
