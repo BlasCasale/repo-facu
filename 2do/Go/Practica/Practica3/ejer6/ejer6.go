@@ -41,31 +41,33 @@ func Ejer6() {
 
 	var wg sync.WaitGroup
 
-	i1 := rand.Intn(5)
+	i1 := 1 + rand.Intn(5)
 	wg.Add(i1)
-	i2 := rand.Intn(5)
+	i2 := 1 + rand.Intn(5)
 	wg.Add(i2)
-	i3 := rand.Intn(5)
+	i3 := 1 + rand.Intn(5)
 	wg.Add(i3)
 
 	go executeConsumer(i1, ch1, &wg)
 	go executeConsumer(i2, ch2, &wg)
 	go executeConsumer(i3, ch3, &wg)
 
-	select {
-	case n := <-ch1:
-		consumer(n, 1)
+	for range i1 + i2 + i3 {
+		select {
+		case n := <-ch1:
+			consumer(n, 1)
 
-	case n := <-ch2:
-		consumer(n, 2)
+		case n := <-ch2:
+			consumer(n, 2)
 
-	case n := <-ch3:
-		consumer(n, 3)
+		case n := <-ch3:
+			consumer(n, 3)
 
-	default:
-		time.Sleep(time.Millisecond * 500)
+		default:
+			time.Sleep(time.Millisecond * 300)
+		}
 	}
 
 	wg.Wait()
-	fmt.Println("Termino el programa")
+	fmt.Println("\n Termino el programa")
 }
