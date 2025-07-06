@@ -3,74 +3,106 @@ package structs
 import "fmt"
 
 type List[T any] struct {
-	first, last *Node[T]
-	quantity    int
+	First, Last *Node[T]
+	Quantity    int
 }
 
 type Node[T any] struct {
-	data T
-	next *Node[T]
+	Data T
+	Next *Node[T]
+}
+
+func NewList[T any]() *List[T] {
+	return &List[T]{First: nil, Last: nil, Quantity: 0}
 }
 
 func NewNode[T any](v T) *List[T] {
-	node := &Node[T]{data: v}
+	node := &Node[T]{Data: v}
 	return &List[T]{
-		first:    node,
-		last:     node,
-		quantity: 1,
+		First:    node,
+		Last:     node,
+		Quantity: 1,
 	}
 }
 
 func AddNode[T any](v T, l *List[T]) {
-	node := &Node[T]{data: v, next: nil}
+	node := &Node[T]{Data: v, Next: nil}
 
-	if l.first == nil {
-		l.first = node
-		l.last = node
-		l.quantity = 1
+	if l.First == nil {
+		l.First = node
+		l.Last = node
+		l.Quantity = 1
 	} else {
-		l.last.next = node
-		l.last = node
-		l.quantity++
+		l.Last.Next = node
+		l.Last = node
+		l.Quantity++
 	}
 }
 
 func InsertOrder[T any](v T, f func(T, T) bool, l *List[T]) {
-	node := &Node[T]{data: v}
+	node := &Node[T]{Data: v}
 
-	if l.first == nil {
-		l.first = node
-		l.last = node
-		l.quantity = 1
+	if l.First == nil {
+		l.First = node
+		l.Last = node
+		l.Quantity = 1
 	} else {
 		var prev *Node[T]
 
-		cur := l.first
+		cur := l.First
 
 		for cur != nil {
-			if f(cur.data, v) {
+			if f(cur.Data, v) {
 				break
 			}
 			prev = cur
-			cur = cur.next
+			cur = cur.Next
 		}
 
-		node.next = cur
+		node.Next = cur
 
-		if cur == l.first {
-			l.first = node
+		if cur == l.First {
+			l.First = node
 		} else {
-			prev.next = node
+			prev.Next = node
 		}
 
-		l.quantity++
+		l.Quantity++
+	}
+}
+
+func DeleteNode[T any](f func(T) bool, l *List[T]) {
+	if l.First == nil {
+		fmt.Println("La lista esta vacia")
+	}
+
+	if f(l.First.Data) {
+		l.First = l.First.Next
+		l.Quantity--
+	} else {
+		cur := l.First
+		prev := cur
+
+		for cur != nil {
+			prev = cur
+			if f(cur.Data) {
+				break
+			}
+			cur = cur.Next
+		}
+
+		if cur == l.First {
+			l.First = l.First.Next
+		} else {
+			prev.Next = cur.Next
+		}
 	}
 }
 
 func PrintRecur[T any](node *Node[T]) {
 	if node != nil {
-		PrintRecur(node.next)
-		fmt.Println(node.data)
+		PrintRecur(node.Next)
+		fmt.Println(node.Data)
 	}
 }
 
@@ -90,7 +122,7 @@ func GenericList() {
 	InsertOrder("blas2", LowerString, l)
 	InsertOrder("blas3", LowerString, l)
 
-	PrintRecur(l.first)
+	PrintRecur(l.First)
 
 	li := NewNode(1)
 
@@ -100,5 +132,5 @@ func GenericList() {
 	InsertOrder(6, LowerInt, li)
 	InsertOrder(7, LowerInt, li)
 
-	PrintRecur(li.first)
+	PrintRecur(li.First)
 }

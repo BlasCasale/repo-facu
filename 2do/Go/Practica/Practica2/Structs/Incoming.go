@@ -15,49 +15,49 @@ import (
 */
 
 type Date struct {
-	day   int
-	month int
-	year  int
+	Day   int
+	Month int
+	Year  int
 }
 
 type Incoming struct {
-	name       string
-	lastname   string
-	cityOrigin string
-	bornDate   Date
-	secondarie bool
-	courrier   string
+	Name       string
+	Lastname   string
+	CityOrigin string
+	BornDate   Date
+	Secondarie bool
+	Courrier   string
 }
 
 func (i Incoming) String() string {
-	date := fmt.Sprintf("%02d/%02d/%04d", i.bornDate.day, i.bornDate.month, i.bornDate.year)
-	return i.name + " " + i.lastname + " " + i.cityOrigin + " " + date + " " + i.courrier
+	date := fmt.Sprintf("%02d/%02d/%04d", i.BornDate.Day, i.BornDate.Month, i.BornDate.Year)
+	return i.Name + " " + i.Lastname + " " + i.CityOrigin + " " + date + " " + i.Courrier
 }
 
 func OlderInc(i1, i2 Incoming) bool {
-	d1, d2 := i1.bornDate, i2.bornDate
-	if d1.year != d2.year {
-		return d1.year < d2.year
+	d1, d2 := i1.BornDate, i2.BornDate
+	if d1.Year != d2.Year {
+		return d1.Year < d2.Year
 	}
-	if d1.month != d2.month {
-		return d1.month < d2.month
+	if d1.Month != d2.Month {
+		return d1.Month < d2.Month
 	}
-	return d1.day < d2.day
+	return d1.Day < d2.Day
 }
 
 func HigherName(i1, i2 Incoming) bool {
-	return i1.name >= i2.name
+	return i1.Name >= i2.Name
 }
 
 func HigherLastname(i1, i2 Incoming) bool {
-	return i1.lastname >= i2.lastname
+	return i1.Lastname >= i2.Lastname
 }
 
 func Inco() {
 	students := []Incoming{
-		{name: "Juan", lastname: "Pérez", cityOrigin: "Rosario", bornDate: Date{1, 5, 2002}, secondarie: true, courrier: "APU"},
-		{name: "Ana", lastname: "Gómez", cityOrigin: "Córdoba", bornDate: Date{12, 8, 2000}, secondarie: true, courrier: "LI"},
-		{name: "Luis", lastname: "Martínez", cityOrigin: "Mendoza", bornDate: Date{20, 3, 2001}, secondarie: false, courrier: "LS"},
+		{Name: "Juan", Lastname: "Pérez", CityOrigin: "Rosario", BornDate: Date{1, 5, 2002}, Secondarie: true, Courrier: "APU"},
+		{Name: "Ana", Lastname: "Gómez", CityOrigin: "Córdoba", BornDate: Date{12, 8, 2000}, Secondarie: true, Courrier: "LI"},
+		{Name: "Luis", Lastname: "Martínez", CityOrigin: "Mendoza", BornDate: Date{20, 3, 2001}, Secondarie: false, Courrier: "LS"},
 	}
 
 	sort.Slice(students, func(i, j int) bool {
