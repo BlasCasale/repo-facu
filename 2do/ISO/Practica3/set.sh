@@ -41,7 +41,7 @@ add() {
     return 1
   fi
 
-  contains $1
+  contains "$1"
 
   if [ $? -eq 1 ]; then
     set+=("$1")
