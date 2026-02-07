@@ -8,7 +8,6 @@ function print() {
 }
 
 function getUsers() {
-  getent group users
 
   local str="$(getent group users | cut -d: -f4)"
 
@@ -21,7 +20,7 @@ getUsers
 
 if [ $# -eq 1 ]; then
   if [ "$1" = "-l" ]; then
-    echo "hay ${usersVec[@]} en el grupo"
+    echo "hay ${#usersVec[@]} en el grupo"
     exit 0
   fi
 
