@@ -14,22 +14,78 @@ if [ $# -lt 1 ]; then
 fi
 
 for usuario in "$@"; do
-  datos_usuario=$(grep "^$usuario:" /etc/passwd)
+  home=$(grep "$usuario" /etc/passwd | cut -d: -f6)
 
-  if [ -z "$datos_usuario" ]; then
+  if [ -z "$home" ]; then
     continue
   fi
 
-  home_dir=$(echo "$datos_usuario" | cut -d':' -f6)
-
-  if [ -d "$home_dir" ]; then
-    echo "$usuario tiene la home dir $home_dir"
-
-    cantidad=$(find "$home_dir" -type f -name "*.docx" | wc -l)
+  if [ ! -d "$home" ]; then
+    echo "sin HOME"
+    echo "0 archivos que terminan con .docx"
   else
-    echo "SIN HOME"
-    cantidad=0
+    cantidad=$( find "$home" -type f -name "*.docx" | wc -l )
+    echo "el usuario $usuario con home en $home tiene $cantidad archivos que terminan en .docx"
   fi
-
-  echo "Cantidad de archivos .docx $cantidad"
 done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# if [ $# -lt 1 ]; then
+#   echo "se debe enviar al menos un nombre de usuario"
+#   exit 1
+# fi
+# 
+# for usuario in "$@"; do
+#   datos_usuario=$(grep "^$usuario:" /etc/passwd)
+# 
+#   if [ -z "$datos_usuario" ]; then
+#     continue
+#   fi
+# 
+#   home_dir=$(echo "$datos_usuario" | cut -d':' -f6)
+# 
+#   if [ -d "$home_dir" ]; then
+#     echo "$usuario tiene la home dir $home_dir"
+# 
+#     cantidad=$(find "$home_dir" -type f -name "*.docx" | wc -l)
+#   else
+#     echo "SIN HOME"
+#     cantidad=0
+#   fi
+# 
+#   echo "Cantidad de archivos .docx $cantidad"
+# done
