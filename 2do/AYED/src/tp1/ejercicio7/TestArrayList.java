@@ -1,6 +1,7 @@
 package tp1.ejercicio7;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -75,6 +76,49 @@ public class TestArrayList {
 
 		return resultado;
 	}
+	
+	public static int sumarLinkedList (LinkedList<Integer> lista) {
+		if (lista.isEmpty()) {
+			return 0;
+		}
+		
+		int num = lista.get(0);
+		lista.remove(0);
+		int sig = sumarLinkedList(lista);
+		
+		return num + sig;
+	}
+	
+	public static ArrayList<Integer> combinarOrdenado (ArrayList<Integer> lista1, ArrayList<Integer> lista2) {
+		ArrayList<Integer> nuevaLista = new ArrayList<Integer>();
+		ArrayList<Integer> llamado = new ArrayList<Integer>();
+		if (!lista1.isEmpty() && !lista2.isEmpty()) {
+			int n1 = lista1.get(0);
+			int n2 = lista2.get(0);
+			if (n1 < n2) {
+				nuevaLista.add(n1);
+				lista1.remove(0);
+			} else {
+				nuevaLista.add(n2);
+				lista2.remove(0);
+			}
+			llamado = combinarOrdenado(lista1, lista2);
+		} else if (lista1.isEmpty() && !lista2.isEmpty()) {
+			int n = lista2.get(0);
+			nuevaLista.add(n);
+			lista2.remove(0);
+			llamado = combinarOrdenado(lista1, lista2);
+		} else if (!lista1.isEmpty() && lista2.isEmpty()) {
+			int n = lista1.get(0);
+			nuevaLista.add(n);
+			lista1.remove(0);
+			llamado = combinarOrdenado(lista1, lista2);
+		}
+		
+		nuevaLista.addAll(llamado);
+		
+		return nuevaLista;
+	}
 
 	public static void main(String args[]) {
 //		ArrayList<Integer> listaNumeros = new ArrayList<>();
@@ -95,8 +139,19 @@ public class TestArrayList {
 //		iterarRecursivo(listaNumeros, 0);
 //
 //		scanner.close();
+		
+		LinkedList<Integer> listaParaSumar = new LinkedList<>(Arrays.asList(
+			    10, 20, 30, 40, 50, 60, 70, 80, 90, 100
+			));
 
-		todologo();
+		System.out.println(sumarLinkedList(listaParaSumar));
+		
+		ArrayList<Integer> lista1 = new ArrayList<>(Arrays.asList(1, 2, 5, 500, 501));
+
+		// Lista B: Tiene números que caen justo en el "hueco" de la Lista A
+		ArrayList<Integer> lista2 = new ArrayList<>(Arrays.asList(3, 4, 10, 20, 30, 40, 50));
+		
+		System.out.println((combinarOrdenado(lista1, lista2)));
 	}
 
 }
