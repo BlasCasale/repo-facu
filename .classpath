@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="1ero/Taller/Modulo2/Practica/TP_ProyectoAlumnos/src"/>
+	<classpathentry kind="src" path="2do/AYED/src"/>
+	<classpathentry kind="src" path="2do/AYED/TP4/Tiempo/src"/>
+	<classpathentry kind="src" path="2do/AYED/TP4/TiempoDeEjecucion/src"/>
+	<classpathentry kind="lib" path="1ero/Taller/Modulo2/Practica/PaqueteLectura.jar"/>
+	<classpathentry kind="lib" path="1ero/Taller/Modulo3/r-Info3.0.jar"/>
+	<classpathentry kind="output" path="2do/AYED/TP4/Tiempo/bin"/>
+</classpath>
