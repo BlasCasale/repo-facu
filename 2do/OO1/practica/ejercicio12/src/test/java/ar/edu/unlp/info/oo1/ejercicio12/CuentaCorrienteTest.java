@@ -7,17 +7,34 @@ import org.junit.jupiter.api.Test;
 
 public class CuentaCorrienteTest {
 	private CuentaCorriente cuentaCorriente;
+	private CuentaCorriente otraCuenta;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		cuentaCorriente = new CuentaCorriente();
-		cuentaCorriente.depositar(15000);
-		cuentaCorriente.setDescubierto(3000);
+		otraCuenta = new CuentaCorriente();
 	}
 
 	@Test
-	public void testPuedeExtraer() {
-		boolean pudoExtraer = cuentaCorriente.puedeExtraer(18000);
+	public void testDepositar() {
+		cuentaCorriente.depositar(100);
+		assertEquals(100, cuentaCorriente.getSaldo());
+	}
+
+	@Test
+	public void testExtraer() {
+		cuentaCorriente.setDescubierto(500);
+		boolean pudoExtraer = cuentaCorriente.extraer(300);
 		assertEquals(true, pudoExtraer);
+		assertEquals(-300, cuentaCorriente.getSaldo());
+	}
+
+	@Test
+	public void testTransferirACuenta() {
+		cuentaCorriente.setDescubierto(200);
+		boolean transferenciaErronea = cuentaCorriente.transferirACuenta(300, otraCuenta);
+		assertEquals(false, transferenciaErronea);
+		boolean transferenciaCorrecta = cuentaCorriente.transferirACuenta(100, otraCuenta);
+		assertEquals(true, transferenciaCorrecta);
 	}
 }
